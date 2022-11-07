@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
+    "test": "echo \"Error: no test specified\" && exit 1",
+=======
+>>>>>>> main
     "start": "node server/server.js",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
@@ -14,7 +18,10 @@
     "type": "git",
     "url": "git+https://github.com/iamjoyfulgirl/barcade.git"
   },
+<<<<<<< HEAD
+=======
   "keywords": [],
+>>>>>>> main
   "author": "",
   "license": "ISC",
   "bugs": {
