@@ -39,4 +39,4 @@ const formatDay = (day) => {
 
 const Message = model('message', messageSchema);
 
-module.exports = {Message, messageSchema};
+module.exports = { Message, messageSchema };
