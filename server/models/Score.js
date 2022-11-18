@@ -1,13 +1,13 @@
 const { Schema, model, Types } = require('mongoose');
 
-const messageSchema = new Schema(
+const scoreSchema = new Schema(
     {
         userId: {
             type: Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'User', 
         },
-        commentText: {
-            type: String,
+        score: {
+            type: Int,
             required: true,
         },
         createdAt:{
@@ -37,6 +37,6 @@ const formatDay = (day) => {
   };
 };
 
-const Message = model('message', messageSchema);
+const Score = model('score', scoreSchema);
 
-module.exports = {Message, messageSchema};
+module.exports = Score;
