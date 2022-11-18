@@ -39,4 +39,4 @@ const formatDay = (day) => {
 
 const Score = model('score', scoreSchema);
 
-module.exports = Score;
+module.exports = { Score, scoreSchema };
