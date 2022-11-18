@@ -1,3 +1,3 @@
-// TODO: import models here. Ex => "const User require('./User);"
+const User = require('./User');
 
-// TODO: export models here
+module.exports = { User };
