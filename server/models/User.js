@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // import schemas from Message.js and Score.js
-// const messageSchema = require('./Message');
+const messageSchema = require('./Message');
 // const scoreSchema = require('./Score');
 
 const userSchema = new Schema(
@@ -27,7 +27,7 @@ const userSchema = new Schema(
         required: false,
     },
     // scores: [scoreSchema],
-    // messages: [messageSchema],
+    messages: [messageSchema],
   },
   {
     toJSON: {
