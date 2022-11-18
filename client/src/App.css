@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet');
 
-body{
+
+.quoutes{
   font-family: 'Press Start 2P', cursive;
 }
+
+.navbar{
+  text-align: center;
+ position: sticky;
+}
+
