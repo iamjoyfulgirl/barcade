@@ -1,5 +1,7 @@
 import { Tabs, TabList, Tab, Flex } from "@chakra-ui/react";
 import { Link } from "react-scroll";
+//Once Login Signupsetup we use the LinkRoute to render page from singin/Singup to the main page. If not the Scroll Feature and a lot of the Nav items wont appear. Sign out tab is created after signin and signup are set up in utils.
+// import { LinkRoute } from "react-router-dom";
 import React from "react";
 import Header from "../Header/Header";
 
@@ -68,19 +70,7 @@ const Navbar = () => {
                 <h1 className="m-0">Chat Area</h1>
               </Link>
             </Tab>
-            <Tab>
-              <Link
-                className="text-light scroll"
-                to="barcadians"
-                activeClass="active"
-                spy={true}
-                smooth={true}
-                offset={50}
-                duration={500}
-              >
-                <h1 className="m-0">About</h1>
-              </Link>
-            </Tab>
+
             {/* {to check if these are going to be in react-route} */}
             <Tab>
               <Link
@@ -92,7 +82,7 @@ const Navbar = () => {
                 offset={50}
                 duration={500}
               >
-                <h1 className="m-0">Login</h1>
+                <h1>Login</h1>
               </Link>
             </Tab>
             <Tab>
@@ -105,7 +95,7 @@ const Navbar = () => {
                 offset={50}
                 duration={500}
               >
-                <h1 className="m-0">Signup</h1>
+                <h1>Signup</h1>
               </Link>
             </Tab>
           </Flex>

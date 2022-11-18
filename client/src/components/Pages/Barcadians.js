@@ -13,7 +13,11 @@ import {
 export default function SocialProfileSimple() {
   return (
     <div div className="barcadians" id="barcadians">
-      <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
+      <Stack
+        minH={"100vh"}
+        direction={{ base: "column", md: "row" }}
+        justify={"center"}
+      >
         <Center py={6}>
           <Box
             maxW={"320px"}

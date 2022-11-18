@@ -1,4 +1,44 @@
+.insideimage{
+  position: relative;
+  overflow: hidden;
+}
 
+.insideimage > Image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-position: center;
+}
+.insideimage > .orderup{
+  position: absolute;
+  inset: 0;
+  font-size: 2rem;
+  padding: 1 rem;
+  background: rgba(255, 255, 255, .4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.insideimage > Image
+.insideimage > .orderup{
+  transition: 200ms ease-in-out;
+}
+.insideimage > .orderup.fade{
+  opacity:0;
+}
+
+.insideimage:hover > .orderup.fade{
+  opacity:1;
+}
+
+.insideimage:hover>.imgblur {
+  filter: blur(5px);
+}
+
+  .insideimage:hover>.imgblur {
+  transform: scale(.90);
+}
 
 .quoutes{
   font-family: 'Press Start 2P', cursive;

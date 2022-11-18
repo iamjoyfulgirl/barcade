@@ -9,7 +9,11 @@ const Game = () => {
   // const tryOut = new URL("../../images/tryout.png", import.meta.url);
   return (
     <>
-      <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
+      <Stack
+        minH={"100vh"}
+        direction={{ base: "column", md: "row" }}
+        justify={"center"}
+      >
         <div className="gameOn" id="gameOn">
           {/* <Image src={test} alt="hero-image" /> */}
           <Stats />
