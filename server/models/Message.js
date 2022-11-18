@@ -1,10 +1,10 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 const messageSchema = new Schema(
     {
         userId: {
-            type: String,
-            required: true,
+            type: Schema.Types.ObjectId,
+            ref: 'User',
         },
         commentText: {
             type: String,
