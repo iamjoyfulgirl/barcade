@@ -22,7 +22,11 @@
   },
   "homepage": "https://github.com/iamjoyfulgirl/barcade#readme",
   "dependencies": {
-    "concurrently": "^7.5.0"
-
+    "@chakra-ui/react": "^2.4.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "concurrently": "^7.5.0",
+    "framer-motion": "^6.5.1",
+    "react-router-dom": "^6.4.3"
   }
 }
