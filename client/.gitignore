@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-=======
 # Logs
 logs
 *.log
@@ -112,7 +106,6 @@ dist
 
 # dependencies
 node_modules
->>>>>>> main
 /.pnp
 .pnp.js
 
