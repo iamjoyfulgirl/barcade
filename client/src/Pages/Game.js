@@ -1,7 +1,7 @@
 import { Stack, Avatar, Box, Heading, Text } from "@chakra-ui/react";
-import Stats from "../Stats/Stats";
-import BarDrinks from "../BarChoices/BarDrinks";
-import JukeBox from "../JukeBox/JukeBox";
+import Stats from "../components/Stats/Stats";
+import BarDrinks from "../components/BarChoices/BarDrinks";
+import JukeBox from "../components/JukeBox/JukeBox";
 
 const Game = () => {
   // to remove once finalised these 2 images and commented out codes
