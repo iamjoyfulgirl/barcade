@@ -26,6 +26,11 @@ const userSchema = new Schema(
         type: String,
         required: false,
     },
+    pic: {
+      type: String,
+      required: true,
+      default: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+    },
     scores: [scoreSchema],
     messages: [messageSchema],
   },
@@ -33,7 +38,8 @@ const userSchema = new Schema(
     toJSON: {
       virtuals: true,
     },
-  }
+    timestamps: true,
+  },
 );
 
 // hash user password
