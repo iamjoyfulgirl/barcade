@@ -1,8 +1,15 @@
+<<<<<<< HEAD:client/src/components/Pages/Game.js
 import { Stack, Avatar, Box, Heading, Text } from '@chakra-ui/react';
 import Stats from '../Stats/Stats';
 import BarDrinks from '../BarChoices/BarDrinks';
 import JukeBox from '../JukeBox/JukeBox';
 import Flappybird from './Flappybird';
+=======
+import { Stack, Avatar, Box, Heading, Text } from "@chakra-ui/react";
+import Stats from "../components/Stats/Stats";
+import BarDrinks from "../components/BarChoices/BarDrinks";
+import JukeBox from "../components/JukeBox/JukeBox";
+>>>>>>> 0a5de95cd90434f3328151b991af4841ecb29546:client/src/Pages/Game.js
 
 const Game = () => {
   // to remove once finalised these 2 images and commented out codes

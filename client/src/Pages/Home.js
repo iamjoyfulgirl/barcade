@@ -1,5 +1,5 @@
 import { Flex, Image, Stack, Text, Box } from "@chakra-ui/react";
-import "../../App.css";
+import "../App.css";
 
 export default function Home() {
   return (
