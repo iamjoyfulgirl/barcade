@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Pages/Home";
-import Chat from "./components/Chat/ChatMessage"
+// import Chat from "./components/Chat/ChatMessage";
 import Barcadians from "./components/Pages/Barcadians";
 import Footer from "./components/Footer/Footer";
+import Game from "./components/Pages/Game";
+// import Flappyird from "./components/Pages/Flappybird";
 import "./index.css";
 import Signin from "./components/Access/Signin";
-import Game from './components/Pages/Game';
-import Flappyird from './components/Pages/Flappybird';
 
 
 function App() {
@@ -17,9 +17,9 @@ function App() {
       <Navbar />
       <Signin />
       <Home />
-      <Chat /> 
+      {/* <Chat /> */}
       <Game />
-      <Flappyird />
+      {/* <Flappyird /> */}
       <Barcadians />
       <Footer />
     </div>
