@@ -11,20 +11,65 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../../utils/mutation";
+import Auth from "../utils/auth";
 
-export default function SplitScreen() {
+export default function Signin() {
+  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [login] = useMutation(LOGIN_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+    setFormState({
+      email: "",
+      password: "",
+    });
+  };
+
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
           <Heading fontSize={"2xl"}>Signin</Heading>
-          <FormControl id="username">
+          {/* {need to add in data rendering of pages} */}
+          <FormControl id="username" onSubmit={handleFormSubmit}>
             <FormLabel>User name</FormLabel>
-            <Input type="text" />
+            <Input
+              type="text"
+              name="username"
+              value={formState.username}
+              onChange={handleChange}
+            />
           </FormControl>
-          <FormControl id="password">
+          <FormControl id="password" onSubmit={handleFormSubmit}>
             <FormLabel>Password</FormLabel>
-            <Input type="password" />
+            <Input
+              placeholder="******"
+              name="password"
+              type="password"
+              value={formState.password}
+              onChange={handleChange}
+            />
           </FormControl>
           <Stack spacing={6}>
             <Stack
@@ -35,7 +80,7 @@ export default function SplitScreen() {
               <Checkbox>Remember me</Checkbox>
               <Link color={"blue.500"}>Forgot password?</Link>
             </Stack>
-            <Button colorScheme={"blue"} variant={"solid"}>
+            <Button colorScheme={"blue"} variant={"solid"} type="submit">
               Sign in
             </Button>
           </Stack>
