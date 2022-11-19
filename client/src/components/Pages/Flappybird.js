@@ -1,25 +1,51 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const BIRD_SIZE = 30;
-const GAME_HEIGHT = 1000;
-const GAME_WIDTH = 1000;
+const birdSize = 30;
+const gameHeight = 1000;
+const gameWidth = 1000;
+const gravity = 2;
+const jumpHeight = 100;
 
 function App() {
+  const [birdTop, setBirdTop] = useState(0);
+
+  useEffect(() => {
+    let timeID;
+    if (birdTop < gameHeight - birdSize) {
+      timeID = setInterval(() => {
+        setBirdTop((birdTop) => birdTop + gravity);
+      }, 30);
+    }
+    return () => {
+      clearInterval(timeID);
+    };
+  });
+
+  const jumpHandle = () => {
+    let jump = birdTop - jumpHeight;
+    setBirdTop(jump);
+  };
+
   return (
-    <Div>
-      <GameContainer height={GAME_HEIGHT} width={GAME_WIDTH}>
-        <Bird size={BIRD_SIZE} />
+    <Div onClick={jumpHandle}>
+      <GameContainer height={gameHeight} width={gameWidth}>
+        <Bird size={birdSize} top={birdTop} />
       </GameContainer>
     </Div>
   );
 }
 
 const Bird = styled.div`
+  position: relative;
+  object-position: center;
   background-color: black;
   height: ${(props) => props.size}px;
   width: ${(props) => props.size}px;
-  top: 50%;
+  top: ${(props) => props.top}px;
   border-radius: 50%;
+  transition: 0.25s;
+  left: 200px;
 `;
 
 const Div = styled.div`
@@ -30,7 +56,6 @@ const Div = styled.div`
 
 const GameContainer = styled.div`
   display: flex;
-  align-items: center;
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
   background-color: green;
