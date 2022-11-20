@@ -6,7 +6,7 @@ import Home from "./Pages/Home";
 import Barcadians from "./Pages/Barcadians";
 import Footer from "./components/Footer/Footer";
 import Game from "./Pages/Game";
-// import Flappyird from "./components/Pages/Flappybird";
+// import Flappybird from "./components/Pages/Flappybird";
 import "./index.css";
 import Signup from "./components/Access/Signup";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
@@ -25,7 +25,7 @@ function App() {
         <Home />
         {/* <Chat /> */}
         <Game />
-        {/* <Flappyird /> */}
+        {/* <Flappybird /> */}
         <Barcadians />
         <Footer />
       </div>
