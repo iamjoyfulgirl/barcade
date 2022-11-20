@@ -16,7 +16,8 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutation";
 import Auth from "../../utils/auth";
 // import { Link } from "react-router-dom";
-export default function Signin() {
+// export default function Signin() {
+const Signin = (props) => {
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -40,6 +41,8 @@ export default function Signin() {
     } catch (e) {
       console.error(e);
     }
+
+
     setFormState({
       email: "",
       password: "",
@@ -50,7 +53,7 @@ export default function Signin() {
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Heading fontSize={"2xl"}>Signin</Heading>
+          <Heading fontSize={"2xl"}>Sign In</Heading>
           {/* {need to add in data rendering of pages} */}
           {data ? (
             <p>
@@ -99,7 +102,7 @@ export default function Signin() {
           )}
           <Stack pt={6}>
             <Text align={"center"}>
-              Need to singup? <Link color={"blue.400"}>Signup</Link>
+              Need to sign up? <Link to="/" color={"blue.400"}>Sign Up</Link>
             </Text>
           </Stack>
         </Stack>
@@ -116,3 +119,5 @@ export default function Signin() {
     </Stack>
   );
 }
+
+export default Signin;
