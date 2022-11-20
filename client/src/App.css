@@ -1,4 +1,4 @@
-.insideimage{
+.insideimage {
   position: relative;
   overflow: hidden;
 }
@@ -9,43 +9,49 @@
   aspect-ratio: 1/1;
   object-position: center;
 }
-.insideimage > .orderup{
+.insideimage > .orderup {
   position: absolute;
   inset: 0;
   font-size: 2rem;
   padding: 1 rem;
-  background: rgba(255, 255, 255, .4);
+  background: rgba(255, 255, 255, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.insideimage > Image
-.insideimage > .orderup{
+.insideimage > Image .insideimage > .orderup {
   transition: 200ms ease-in-out;
 }
-.insideimage > .orderup.fade{
-  opacity:0;
+.insideimage > .orderup.fade {
+  opacity: 0;
 }
 
-.insideimage:hover > .orderup.fade{
-  opacity:1;
+.insideimage:hover > .orderup.fade {
+  opacity: 1;
 }
 
-.insideimage:hover>.imgblur {
+.insideimage:hover > .imgblur {
   filter: blur(5px);
 }
 
-  .insideimage:hover>.imgblur {
-  transform: scale(.90);
+.insideimage:hover > .imgblur {
+  transform: scale(0.9);
 }
 
-.quoutes{
+.quoutes {
   font-family: 'Press Start 2P', cursive;
 }
 
-.navbar{
+.navbar {
   text-align: center;
- position: sticky;
+  position: sticky;
 }
 
+.theBird {
+  z-index: 1;
+}
+
+.gameBox {
+  background-image: url('./images/gameBG.jpg');
+}

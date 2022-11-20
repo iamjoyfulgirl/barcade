@@ -29,14 +29,14 @@ function App() {
 
   return (
     <Div onClick={jumpHandle}>
-      <GameContainer height={gameHeight} width={gameWidth}>
-        <Bird size={birdSize} top={birdTop} />
+      <GameContainer className='gameBox' height={gameHeight} width={gameWidth}>
+        <Bird className='theBird' size={birdSize} top={birdTop} />
       </GameContainer>
     </Div>
   );
 }
 
-const Bird = styled.div`
+const Bird = styled.image`
   position: relative;
   object-position: center;
   background-color: black;
@@ -58,7 +58,6 @@ const GameContainer = styled.div`
   display: flex;
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
-  background-color: green;
 `;
 
 export default App;
