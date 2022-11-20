@@ -1,7 +1,7 @@
 // TODO: import models and schemas here
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
-const { User, Chat, Message, Score } = require('../models');
+const { User, Chat, Message, Score, Game } = require('../models');
 
 //.populate drinks or messages??
 const resolvers = {
@@ -35,6 +35,12 @@ const resolvers = {
     },
     userScores: async (parent, { userId }) => {
       return await Score.findOne({ userId: userId });
+    },
+    games: async (parent, args) => {
+      return await Game.find({});
+    },
+    game: async (parent, { gameId }) => {
+      return await Game.findOne({ gameId: gameId });
     },
   },
 
