@@ -13,8 +13,8 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../../utils/mutation";
-import Auth from "../../utils/auth";
+import { LOGIN_USER } from "../utils/mutation";
+import Auth from "../utils/auth";
 // import { Link } from "react-router-dom";
 // export default function Signin() {
 const Signin = (props) => {

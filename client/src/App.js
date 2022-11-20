@@ -7,7 +7,8 @@ import Footer from "./components/Footer/Footer";
 import Game from "./Pages/Game";
 import Flappybird from "./Pages/Flappybird";
 import "./index.css";
-// import Signup from "./components/Access/Signup";
+import Signin from "./Pages/Signin";
+// import Signup from "./Pages/Signup";
 import {
   ApolloClient,
   InMemoryCache,
@@ -15,7 +16,6 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import Signin from "./components/Access/Signin";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
