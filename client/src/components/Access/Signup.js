@@ -41,11 +41,12 @@ export default function Signup() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    console.log('formState:', formState);
+    console.log('handleSubmit');
 
     try {
       const { data } = await addUser({
-        variables: { ...formState },
+        variables: formState,
       });
       Auth.login(data.addUser.token);
     } catch (e) {
@@ -76,6 +77,7 @@ export default function Signup() {
           p={8}
         >
           <Stack spacing={4}>
+            <form onSubmit={handleFormSubmit}>
             <HStack>
               <Box>
                 {/* {data ? (
@@ -84,7 +86,8 @@ export default function Signup() {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : ( */}
-                <FormControl onSubmit={handleFormSubmit} isRequired>
+            
+                <FormControl >
                   <FormLabel>Username</FormLabel>
                   <Input
                     type="text"
@@ -109,7 +112,12 @@ export default function Signup() {
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
+                <Input type={showPassword ? "text" : "password"}
+                  value={formState.name}
+                  onChange={handleChange}
+                  placeholder="Your password"
+                  name="password"
+                />
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -136,13 +144,16 @@ export default function Signup() {
               >
                 Sign up
               </Button>
+              
             </Stack>
+            
             {/* Note: Need to create a modal or a page that pops up if not signed in or logged in then cannot render through the rest of the page */}
             <Stack pt={6}>
               <Text align={"center"}>
                 Already a user? <Link color={"blue.400"}>Login</Link>
               </Text>
             </Stack>
+            </form>
           </Stack>
         </Box>
       </Stack>
