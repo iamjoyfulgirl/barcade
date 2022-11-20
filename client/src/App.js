@@ -1,34 +1,34 @@
-import React from "react";
+import React from 'react';
 
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./Pages/Home";
+import Navbar from './components/Navbar/Navbar';
+import Home from './Pages/Home';
 // import Chat from "./components/Chat/ChatMessage";
-import Barcadians from "./Pages/Barcadians";
-import Footer from "./components/Footer/Footer";
-import Game from "./Pages/Game";
-// import Flappybird from "./components/Pages/Flappybird";
-import "./index.css";
-import Signup from "./components/Access/Signup";
+import Barcadians from './Pages/Barcadians';
+import Footer from './components/Footer/Footer';
+import Game from './Pages/Game';
+import Flappybird from './Pages/Flappybird';
+import './index.css';
+import Signup from './components/Access/Signup';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: '/graphql',
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("id_token");
+  const token = localStorage.getItem('id_token');
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -48,7 +48,7 @@ function App() {
         <Home />
         {/* <Chat /> */}
         <Game />
-        {/* <Flappybird /> */}
+        <Flappybird />
         <Barcadians />
         <Footer />
       </div>

@@ -50,6 +50,8 @@
 
 .theBird {
   z-index: 1;
+  background-image: url('./images/Duck.png');
+  background-size: contain;
 }
 
 .gameBox {

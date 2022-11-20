@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const birdSize = 30;
+const birdSize = 75;
 const gameHeight = 1000;
 const gameWidth = 1000;
 const gravity = 2;
@@ -39,7 +39,6 @@ function App() {
 const Bird = styled.image`
   position: relative;
   object-position: center;
-  background-color: black;
   height: ${(props) => props.size}px;
   width: ${(props) => props.size}px;
   top: ${(props) => props.top}px;
