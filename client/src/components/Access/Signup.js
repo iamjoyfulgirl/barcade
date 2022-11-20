@@ -16,9 +16,42 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../utils/mutation";
+
+import Auth from "../../utils/auth";
 
 export default function Signup() {
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [addUser] = useMutation(ADD_USER);
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <Flex
@@ -45,16 +78,34 @@ export default function Signup() {
           <Stack spacing={4}>
             <HStack>
               <Box>
-                <FormControl id="userName" isRequired>
+                {/* {data ? (
+              <p>
+                Success! You may now head{' '}
+                <Link to="/">back to the homepage.</Link>
+              </p>
+            ) : ( */}
+                <FormControl onSubmit={handleFormSubmit} isRequired>
                   <FormLabel>Username</FormLabel>
-                  <Input type="text" />
+                  <Input
+                    type="text"
+                    value={formState.name}
+                    onChange={handleChange}
+                    placeholder="Your username"
+                    name="username"
+                  />
                 </FormControl>
               </Box>
             </HStack>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
-            </FormControl>
+
+            <FormLabel>Email address</FormLabel>
+            <Input
+              type="email"
+              value={formState.name}
+              onChange={handleChange}
+              placeholder="Your email"
+              name="email"
+            />
+
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
@@ -80,6 +131,8 @@ export default function Signup() {
                 _hover={{
                   bg: "blue.500",
                 }}
+                style={{ cursor: "pointer" }}
+                type="submit"
               >
                 Sign up
               </Button>
