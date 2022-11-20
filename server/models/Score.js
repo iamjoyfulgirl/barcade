@@ -10,10 +10,13 @@ const scoreSchema = new Schema(
             type: Number,
             required: true,
         },
+        gameName: {
+            type: Schema.Types.ObjectId,
+            ref: 'Game',
+        },
     },
     {
         toJSON: {
-            getters: true,
             virtuals: true,
             getters: true,
         },

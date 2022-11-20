@@ -25,6 +25,12 @@ const typeDefs = gql `
         chat: ID!
     }
 
+    type Game {
+        _id: ID!
+        gameName: String!
+        scores: [Score]
+    }
+
     type Chat {
         _id: ID!
         chatName: String!
@@ -49,6 +55,8 @@ const typeDefs = gql `
         userMessages(userId: ID!): Chat
         scores: [Score]!
         userScores(userId: ID!): Score
+        games: [Game]!
+        game(gameId: ID!): Game
     }
 
     type Mutation {
@@ -59,6 +67,7 @@ const typeDefs = gql `
         addToChat(chatId: ID!, userId: ID!): Chat
         addMessage(sender: ID!, Chat: ID!, content: String!): Message
         addScore(userId: ID!, gameId: ID!, score: Int!): Score
+        addGame(gameName: String!): Game
     }
 `;
 
