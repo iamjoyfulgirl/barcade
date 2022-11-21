@@ -56,4 +56,10 @@
 
 .gameBox {
   background-image: url('./images/gameBG.jpg');
+  background-size: auto;
+}
+
+.thePipes {
+  background-image: url('./images/Fire.jpg');
+  background-position: center;
 }
