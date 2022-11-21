@@ -35,6 +35,14 @@ const Guessing = () => {
     setUserCount(userCount + 1);
   };
 
+  const restartGame = () => {
+    setDisabled(false);
+    setMsg("");
+    userCount(0);
+    setRandomNumber();
+    setGuess("");
+  };
+
   return (
     <Stack className="body" display={"flex"}>
       <Box className="header" position={"relative"} height={"35vh"}>
@@ -55,7 +63,9 @@ const Guessing = () => {
         >
           (Between 1 and 20)
         </Text>
-        <Button className="btn again">Again!</Button>
+        <Button className="btn again" onClick={restartGame}>
+          Again!
+        </Button>
         <div className="number">{randomNumber}</div>
       </Box>
       <Flex
