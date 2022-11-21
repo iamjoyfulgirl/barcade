@@ -1,6 +1,6 @@
 import React from "react";
 import "./guessingStyle.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Flex,
