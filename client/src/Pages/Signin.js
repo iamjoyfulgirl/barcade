@@ -35,13 +35,12 @@ const Signin = (props) => {
     console.log(formState);
     try {
       const { data } = await login({
-        variables: { ...formState },
+        variables: formState,
       });
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }
-
 
     setFormState({
       email: "",
@@ -102,7 +101,7 @@ const Signin = (props) => {
           )}
           <Stack pt={6}>
             <Text align={"center"}>
-              Need to sign up? <Link to="/" color={"blue.400"}>Sign Up</Link>
+              Need to sign up? <Link to="/signup" color={"blue.400"}>Sign Up</Link>
             </Text>
           </Stack>
         </Stack>
