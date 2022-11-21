@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const birdSize = 75;
 const gameHeight = 1000;
 const gameWidth = 1000;
-const gravity = 2;
-const jumpHeight = 100;
+const gravity = 10;
+const jumpHeight = 150;
 const pipeWidth = 100;
 const pipeHole = birdSize * 3;
 
@@ -35,8 +35,13 @@ function App() {
       pipeID = setInterval(() => {
         setPipeleft((pipeLeft) => pipeLeft - 5);
       }, 30);
+      return () => {
+        clearInterval(pipeID);
+      };
+    } else {
+      setPipeleft(gameWidth - pipeWidth);
+      setPipeheight(Math.floor(Math.random() * (gameHeight - pipeHole)));
     }
-    return () => clearInterval(pipeID);
   });
 
   const jumpHandle = () => {
@@ -52,17 +57,24 @@ function App() {
 
   return (
     <Div onClick={jumpHandle}>
-      <GameContainer className="gameBox" height={gameHeight} width={gameWidth}>
+      <GameContainer className='gameBox' height={gameHeight} width={gameWidth}>
         <pipeContainer>
-          <Pipe top={0} width={pipeWidth} height={pipeHeight} left={pipeLeft} />
           <Pipe
+            className='thePipes'
+            top={0}
+            width={pipeWidth}
+            height={pipeHeight}
+            left={pipeLeft}
+          />
+          <Pipe
+            className='thePipes'
             top={pipeHole}
             width={pipeWidth}
             height={bottomPipe}
             left={pipeLeft}
           />
         </pipeContainer>
-        <Bird className="theBird" size={birdSize} top={birdTop} />
+        <Bird className='theBird' size={birdSize} top={birdTop} />
       </GameContainer>
     </Div>
   );
@@ -74,7 +86,6 @@ const Bird = styled.image`
   height: ${(props) => props.size}px;
   width: ${(props) => props.size}px;
   top: ${(props) => props.top}px;
-  border-radius: 50%;
   transition: 0.25s;
   left: 200px;
 `;
@@ -88,6 +99,7 @@ const Div = styled.div`
 const GameContainer = styled.div`
   overflow: contain;
   display: flex;
+  overflow: hidden;
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
 `;
