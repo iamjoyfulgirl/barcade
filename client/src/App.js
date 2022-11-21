@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./Pages/Home";
-// import Chat from "./components/Chat/ChatMessage";
+import Chat from "./Pages/Chat";
 import Barcadians from "./Pages/Barcadians";
 import Footer from "./components/Footer/Footer";
 import Game from "./Pages/Game";
@@ -48,7 +48,7 @@ function App() {
         <Navbar />
         <Signin />
         <Home />
-        {/* <Chat /> */}
+        <Chat />
         <Game />
         <Flappybird />
         <Barcadians />
