@@ -1,14 +1,15 @@
 import React from "react";
-
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./Pages/Home";
-// import Chat from "./components/Chat/ChatMessage";
+import Chat from "./Pages/Chat";
 import Barcadians from "./Pages/Barcadians";
 import Footer from "./components/Footer/Footer";
 import Game from "./Pages/Game";
-// import Flappybird from "./components/Pages/Flappybird";
+import Flappybird from "./Pages/Flappybird";
 import "./index.css";
-import Signup from "./components/Access/Signup";
+import Signin from "./Pages/Signin";
+
+// import Signup from "./Pages/Signup";
 import {
   ApolloClient,
   InMemoryCache,
@@ -16,6 +17,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -44,11 +46,11 @@ function App() {
     <ApolloProvider client={client}>
       <div>
         <Navbar />
-        <Signup />
+        <Signin />
         <Home />
-        {/* <Chat /> */}
+        <Chat />
         <Game />
-        {/* <Flappybird /> */}
+        <Flappybird />
         <Barcadians />
         <Footer />
       </div>

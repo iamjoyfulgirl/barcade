@@ -1,5 +1,6 @@
 import { Flex, Image, Stack, Text, Box } from "@chakra-ui/react";
 import "../App.css";
+// import Guessing from "../components/Games/Guessing";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
           Soup of the day - Beer
         </Text>
       </Box>
+      {/* <Guessing /> */}
     </Stack>
   );
 }

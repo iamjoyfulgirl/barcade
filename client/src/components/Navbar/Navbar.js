@@ -1,5 +1,6 @@
 import { Tabs, TabList, Tab, Flex } from "@chakra-ui/react";
 import { Link } from "react-scroll";
+
 //Once Login Signupsetup we use the LinkRoute to render page from singin/Singup to the main page. If not the Scroll Feature and a lot of the Nav items wont appear. Sign out tab is created after signin and signup are set up in utils.
 // import { LinkRoute } from "react-router-dom";
 import React from "react";
