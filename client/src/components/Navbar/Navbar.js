@@ -56,7 +56,7 @@ const Navbar = () => {
                 offset={50}
                 duration={500}
               >
-                <h1 className="m-0">Barcadians</h1> {Auth.loggedIn ? <h1>True</h1> : <h1>False</h1>}
+                <h1 className="m-0">Barcadians</h1> {Auth.loggedIn() ? <h1>True</h1> : <h1>False</h1>}
               </Link>
             </Tab>
             <Tab>
