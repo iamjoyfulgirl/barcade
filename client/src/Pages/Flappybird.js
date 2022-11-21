@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const birdSize = 75;
 const gameHeight = 1000;
@@ -29,8 +29,8 @@ function App() {
 
   return (
     <Div onClick={jumpHandle}>
-      <GameContainer className='gameBox' height={gameHeight} width={gameWidth}>
-        <Bird className='theBird' size={birdSize} top={birdTop} />
+      <GameContainer className="gameBox" height={gameHeight} width={gameWidth}>
+        <Bird className="theBird" size={birdSize} top={birdTop} />
       </GameContainer>
     </Div>
   );
