@@ -18,7 +18,7 @@ import Auth from "../utils/auth";
 // import { Link } from "react-router-dom";
 // export default function Signin() {
 const Signin = (props) => {
-  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
@@ -61,12 +61,12 @@ const Signin = (props) => {
             </p>
           ) : (
             <form onSubmit={handleFormSubmit}>
-              <FormControl id="username">
-                <FormLabel>User name</FormLabel>
+              <FormControl id="email">
+                <FormLabel>Email</FormLabel>
                 <Input
                   type="text"
-                  name="username"
-                  value={formState.username}
+                  name="email"
+                  value={formState.email}
                   onChange={handleChange}
                 />
               </FormControl>
