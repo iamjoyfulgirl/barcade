@@ -10,7 +10,7 @@ const scoreSchema = new Schema(
             type: Number,
             required: true,
         },
-        gameName: {
+        gameId: {
             type: Schema.Types.ObjectId,
             ref: 'Game',
         },
