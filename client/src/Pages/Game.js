@@ -1,7 +1,7 @@
-import { Stack, Avatar, Box, Heading, Text } from '@chakra-ui/react';
-import Stats from '../components/Stats/Stats';
-import BarDrinks from '../components/BarChoices/BarDrinks';
-import JukeBox from '../components/JukeBox/JukeBox';
+import { Stack, Avatar, Box, Heading, Text } from "@chakra-ui/react";
+import Stats from "../components/Stats/Stats";
+import BarDrinks from "../components/BarChoices/BarDrinks";
+import JukeBox from "../components/JukeBox/JukeBox";
 
 const Game = () => {
   // to remove once finalised these 2 images and commented out codes
@@ -10,11 +10,11 @@ const Game = () => {
   return (
     <>
       <Stack
-        minH={'100vh'}
-        direction={{ base: 'column', md: 'row' }}
-        justify={'center'}
+        minH={"100vh"}
+        direction={{ base: "column", md: "row" }}
+        justify={"center"}
       >
-        <div className='gameOn' id='gameOn'>
+        <div className="gameOn" id="gameOn">
           {/* <Image src={test} alt="hero-image" /> */}
           <Stats />
         </div>
@@ -24,18 +24,18 @@ const Game = () => {
             <img src={tryOut} alt="tryout" />
           </Box> */}
           <Avatar
-            size={'xxl'}
+            size={"xxl"}
             src={
-              'https://bbts1.azureedge.net/images/p/full/2020/09/fd93e035-5bb3-4b73-b296-934b545c534e.jpg'
+              "https://bbts1.azureedge.net/images/p/full/2020/09/fd93e035-5bb3-4b73-b296-934b545c534e.jpg"
             }
-            alt={'Avatar Alt'}
+            alt={"Avatar Alt"}
             mb={4}
-            pos={'relative'}
+            pos={"relative"}
           />
-          <Heading fontSize={'2xl'} fontFamily={'body'} textAlign={'center'}>
+          <Heading fontSize={"2xl"} fontFamily={"body"} textAlign={"center"}>
             Welcome
           </Heading>
-          <Text className='quoutes' textAlign={'center'}>
+          <Text className="quoutes" textAlign={"center"}>
             Day Man
           </Text>
         </Box>
