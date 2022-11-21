@@ -84,19 +84,18 @@ const resolvers = {
     addMessage: async (parent, args, context) => {
       console.log('addMessage called');
       // if (context.user) {
-        await Message.create(args);
+        const newMessage = await Message.create(args);
         await User.findOneAndUpdate(
           { _id: args.sender },
           { $push: { messages: args } },
           { new: true },
         );
+        return newMessage;
       // }
       // throw new AuthenticationError('You need to be logged in!');
     },
     addScore: async (parent, args, context) => {
       console.log('addScore called');
-      console.log('gameId:', args.gameId);
-      console.log('score:', args.score);
       // if (context.user) {
         const newScore = await Score.create(args);
         await User.findOneAndUpdate(
@@ -117,6 +116,14 @@ const resolvers = {
       console.log('addgame called');
       return await Game.create(args);
     },
+    addDrink: async (parent, args, context) => {
+      console.log('addDrink called');
+      return await User.findOneAndUpdate(
+        { _id: args.userId },
+        { drink: args.drink },
+        { new: true },
+      );
+    }
   },
 };
 

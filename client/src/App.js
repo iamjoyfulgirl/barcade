@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./Pages/Home";
 import Chat from "./Pages/Chat";
-import Barcadians from "./Pages/Barcadians";
+//div issue occurring from here.
+// import Barcadians from "./Pages/Barcadians";
 import Footer from "./components/Footer/Footer";
 import Game from "./Pages/Game";
 import Flappybird from "./Pages/Flappybird";
@@ -43,18 +44,18 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <div>
+    <div>
+      <ApolloProvider client={client}>
         <Navbar />
         <Signin />
         <Home />
         <Chat />
         <Game />
         <Flappybird />
-        <Barcadians />
+        {/* <Barcadians /> */}
         <Footer />
-      </div>
-    </ApolloProvider>
+      </ApolloProvider>
+    </div>
   );
 }
 
