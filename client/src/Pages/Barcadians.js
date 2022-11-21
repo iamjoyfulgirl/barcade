@@ -10,7 +10,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-export default function SocialProfileSimple() {
+export default function Barcadians() {
   return (
     <div div className="barcadians" id="barcadians">
       <Stack
