@@ -70,6 +70,7 @@ const typeDefs = gql `
         addMessage(sender: ID!, chat: ID!, content: String!): Message
         addScore(userId: ID!, gameId: ID!, score: Int!): Score
         addGame(gameName: String!): Game
+        addDrink(userId: ID!, drink: String!): User
     }
 `;
 

@@ -116,6 +116,14 @@ const resolvers = {
       console.log('addgame called');
       return await Game.create(args);
     },
+    addDrink: async (parent, args, context) => {
+      console.log('addDrink called');
+      return await User.findOneAndUpdate(
+        { _id: args.userId },
+        { drink: args.drink },
+        { new: true },
+      );
+    }
   },
 };
 
