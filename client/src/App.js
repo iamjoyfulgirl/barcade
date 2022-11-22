@@ -5,11 +5,10 @@ import Chat from './Pages/Chat';
 //div issue occurring from here.
 // import Barcadians from "./Pages/Barcadians";
 import Footer from './components/Footer/Footer';
-import Game from './Pages/Game';
+import Lobby from './Pages/Lobby';
 import Flappybird from './Pages/Flappybird';
 import './index.css';
 import Signin from './Pages/Signin';
-
 import Signup from './Pages/Signup';
 import {
   ApolloClient,
@@ -27,12 +26,13 @@ const httpLink = createHttpLink({
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token =  localStorage.getItem('id_token');
+  console.log("token from App:", token);
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : `Bearer ${localStorage.getItem('id_token')}`,
     },
   };
 });
@@ -50,7 +50,7 @@ function App() {
         <Navbar />
         <Home />
         <Chat />
-        <Game />
+        <Lobby />
         <Arcade />
         {/* <Barcadians /> */}
         <Footer />

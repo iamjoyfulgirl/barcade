@@ -20,7 +20,8 @@ const gameSchema = new Schema(
 
 gameSchema.virtual('topScores').get(function () {
    const sortedScores =  this.scores.sort((a, b) => a.score - b.score);
-   return (sortedScores.length > 10 ? sortedScores.slice(0, 10) : sortedScores);
+   const reversedScores = sortedScores.reverse();
+   return (reversedScores.length > 10 ? reversedScores.slice(0, 10) : reversedScores);
 });
 
 const Game = model('Game', gameSchema);

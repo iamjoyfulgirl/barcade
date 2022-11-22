@@ -16,7 +16,7 @@ const typeDefs = gql `
         _id: ID!
         userId: ID!
         score: Int!
-        gameId: ID!
+        gameId: ID
     }
 
     type Message {
@@ -58,7 +58,7 @@ const typeDefs = gql `
         scores: [Score]!
         userScores(userId: ID!): Score
         games: [Game]!
-        game(gameId: ID!): Game
+        game(gameName: String!): Game
     }
 
     type Mutation {

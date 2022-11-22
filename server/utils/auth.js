@@ -2,12 +2,15 @@ const jwt = require('jsonwebtoken');
 
 // set token secret and expiration date
 const secret = 'mysecretsshhhhh';
-const expiration = '5m';
+const expiration = '30m';
 
 module.exports = {
 
   authMiddleware: function ({ req }) {
+    
     let token = req.body.token || req.query.token || req.headers.authorization;
+    // console.log('req.headers', req.headers);
+    // console.log("token from server Auth:", token);
 
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim();
@@ -26,8 +29,11 @@ module.exports = {
 
     return req;
   },
-  signToken: function ({ username, email, _id }) {
+  signToken: async function ({ username, email, _id }) {
       const payload = { username, email, _id };
-      return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+      console.log('payload:', payload);
+      return new Promise((resolve, reject) => {
+        resolve(jwt.sign({ data: payload }, secret, { expiresIn: expiration }));
+      })
     }
 };
