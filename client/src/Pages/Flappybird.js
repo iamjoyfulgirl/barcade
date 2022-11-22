@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Text } from '@chakra-ui/react';
 import styled from 'styled-components';
 
-const birdSize = 75;
+const birdSize = 100;
 const gameHeight = 1000;
 const gameWidth = 1000;
 const gravity = 10;
@@ -12,8 +13,9 @@ const pipeHole = birdSize * 3;
 function App() {
   const [birdTop, setBirdTop] = useState(gameHeight / 2);
   const [gameStart, setGamestart] = useState(false);
-  const [pipeHeight, setPipeheight] = useState(300);
+  const [pipeHeight, setPipeheight] = useState(0);
   const [pipeLeft, setPipeleft] = useState(gameWidth - pipeWidth);
+  const [score, setScore] = useState(0);
 
   const bottomPipe = gameHeight - pipeHeight - pipeHole;
 
@@ -33,7 +35,7 @@ function App() {
     let pipeID;
     if (gameStart && pipeLeft >= -pipeWidth) {
       pipeID = setInterval(() => {
-        setPipeleft((pipeLeft) => pipeLeft - 5);
+        setPipeleft((pipeLeft) => pipeLeft - 20);
       }, 30);
       return () => {
         clearInterval(pipeID);
@@ -41,13 +43,23 @@ function App() {
     } else {
       setPipeleft(gameWidth - pipeWidth);
       setPipeheight(Math.floor(Math.random() * (gameHeight - pipeHole)));
+      setScore((score) => score + 1);
     }
-  });
+  }, [gameStart, pipeLeft]);
+
+  useEffect(() => {
+    const hitTop = birdTop >= 0 && birdTop < pipeHeight;
+    const hitBottom = birdTop <= 1000 && birdTop >= 1000 - bottomPipe;
+    if (pipeLeft >= 0 && pipeLeft <= pipeWidth && (hitTop || hitBottom)) {
+      setGamestart(false);
+    }
+  }, [birdTop, pipeHeight, bottomPipe, pipeLeft]);
 
   const jumpHandle = () => {
     let jump = birdTop - jumpHeight;
     if (!gameStart) {
       setGamestart(true);
+      setScore(0);
     } else if (setBirdTop < 0) {
       setBirdTop(gameHeight / 2);
     } else {
@@ -57,6 +69,9 @@ function App() {
 
   return (
     <Div onClick={jumpHandle}>
+      <Text position='relative' objectPosition='center'>
+        {score}
+      </Text>
       <BirdContainer className='gameBox' height={gameHeight} width={gameWidth}>
         <PipeContainer>
           <Pipe
@@ -87,7 +102,7 @@ const Bird = styled.image`
   width: ${(props) => props.size}px;
   top: ${(props) => props.top}px;
   transition: 0.25s;
-  left: 200px;
+  left: -100px;
 `;
 
 const Div = styled.div`
