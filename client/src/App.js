@@ -47,8 +47,6 @@ function App() {
     <div>
       <ApolloProvider client={client}>
         <Navbar />
-        <Signup />
-        <Signin />
         <Home />
         <Chat />
         <Game />
