@@ -57,8 +57,8 @@ function App() {
 
   return (
     <Div onClick={jumpHandle}>
-      <GameContainer className='gameBox' height={gameHeight} width={gameWidth}>
-        <pipeContainer>
+      <BirdContainer className='gameBox' height={gameHeight} width={gameWidth}>
+        <PipeContainer>
           <Pipe
             className='thePipes'
             top={0}
@@ -73,9 +73,9 @@ function App() {
             height={bottomPipe}
             left={pipeLeft}
           />
-        </pipeContainer>
+        </PipeContainer>
         <Bird className='theBird' size={birdSize} top={birdTop} />
-      </GameContainer>
+      </BirdContainer>
     </Div>
   );
 }
@@ -96,7 +96,7 @@ const Div = styled.div`
   justify-content: center;
 `;
 
-const GameContainer = styled.div`
+const BirdContainer = styled.div`
   overflow: contain;
   display: flex;
   overflow: hidden;
@@ -112,7 +112,7 @@ const Pipe = styled.div`
   height: ${(props) => props.height}px;
   left: ${(props) => props.left}px;
 `;
-const pipeContainer = styled.div`
+const PipeContainer = styled.div`
   display: block;
 `;
 
