@@ -19,34 +19,46 @@ import {
 
 const Guessing = () => {
   const number = Math.trunc(Math.random() * 20) + 1;
-  const [guess, setGuess] = useState("");
-  const [userCount, setUserCount] = useState(0);
+  const [guess, setGuess] = useState();
   const [randomNumber, setRandomNumber] = useState("?");
-  const [disabled, setDisabled] = useState(false);
+  // const [disabled, setDisabled] = useState(false);
   const [msg, setMsg] = useState("Start guessing...");
-
-  const score = 20;
-  const highScore = 0;
+  const [lowHighMsg, setlowHighMsg] = useState("");
+  const [score, setScore] = useState(20);
+  const [highScore, sethighScore] = useState();
 
   const submitHandler = () => {
-    if (Number(number) === Number(guess)) {
-      setMsg("Congratulations");
-      setDisabled(true);
-    } else if (userCount === 4) {
-      setMsg("Game Over");
-      setDisabled(true);
+    if (!guess) {
+      setMsg("❌ No Number");
+    } else if (Number(number) === Number(guess)) {
+      setMsg("💃🏼 Correct Number");
+      // setDisabled(true);
+      setlowHighMsg("");
+
+      if (score > highScore) {
+        // {displaying score as the new highscore}
+        sethighScore = setScore;
+      }
+    } else if (guess > number) {
+      if (score > 0) {
+        setlowHighMsg("this is too high");
+        setScore(score - 1);
+      }
     } else {
-      setMsg("Wrong Guess");
+      setMsg("You Loose");
     }
-    setUserCount(userCount + 1);
+    if (guess < number) {
+      setScore(score - 1);
+      setlowHighMsg("this is too low");
+    }
   };
 
   const restartGame = () => {
-    setDisabled(false);
+    // setDisabled(false);
     setMsg("");
-    userCount(0);
-    setRandomNumber();
-    setGuess("");
+    setScore(20);
+    setRandomNumber(number);
+    setGuess();
   };
 
   return (
@@ -90,7 +102,7 @@ const Guessing = () => {
                 maxW={"md"}
               >
                 <Input
-                  disabled={disabled}
+                  // disabled={disabled}
                   value={guess}
                   type="number"
                   padding={"2.5rem"}
@@ -104,12 +116,13 @@ const Guessing = () => {
               <Box className="right" w={"52rem"} fontSize={"2rem"}>
                 <Text mb={"2rem"} h={"3rem"}>
                   {msg}
+                  {lowHighMsg}
                 </Text>
                 <Text mb={"2rem"}>
-                  💯 Score: <span className="score">20</span>
+                  💯 Score: <span className="score">{score}</span>
                 </Text>
                 <Text className="label-highscore">
-                  🥇 Highscore: <span className="highscore">0</span>
+                  🥇 Highscore: <span className="highscore">{highScore}</span>
                 </Text>
               </Box>
             </Flex>
