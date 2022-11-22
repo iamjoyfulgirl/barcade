@@ -3,11 +3,31 @@ import Stats from '../components/Stats/Stats';
 import BarDrinks from '../components/BarChoices/BarDrinks';
 import JukeBox from '../components/JukeBox/JukeBox';
 import Guessing from '../components/Games/Guessing';
+import Auth from '../utils/auth';
+import { FiArrowUpRight } from 'react-icons/fi';
+import { QUERY_USER } from '../utils/queries';
+import { useEffect } from 'react';
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 
 const Game = () => {
   // to remove once finalised these 2 images and commented out codes
   // const test = new URL("../../images/test.png", import.meta.url);
   // const tryOut = new URL("../../images/tryout.png", import.meta.url);
+  let userId;
+
+  if (Auth.loggedIn()) {
+    userId = Auth.getProfile().data._id;
+  } 
+  
+  const { loading, error, data } = useQuery(QUERY_USER,
+      {
+        variables: { userId: userId },
+      },
+    );
+
+    if (error) return console.log('error', error);
+  const user = data?.me || data?.user;
+
   return (
     <>
       <Stack
@@ -36,9 +56,14 @@ const Game = () => {
           <Heading fontSize={'2xl'} fontFamily={'body'} textAlign={'center'}>
             Welcome
           </Heading>
+          {Auth.loggedIn() ? (
+            <Text className='quoutes' textAlign={'center'}>
+            {user.username}
+            {/* user */}
+            </Text> ) : (
           <Text className='quoutes' textAlign={'center'}>
             Day Man
-          </Text>
+          </Text>)}
         </Box>
 
         {/* //checklist better option */}

@@ -7,10 +7,11 @@ const { User, Chat, Message, Score, Game } = require('../models');
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("drink");
-      }
-      throw new AuthenticationError("You need to be logged in!");
+      // console.log('context:', context);
+      // if (context.user) {
+        return await User.findOne({ _id: args._id });
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
     },
     users: async () => {
       return await User.find({});
@@ -39,8 +40,8 @@ const resolvers = {
     games: async (parent, args) => {
       return await Game.find({});
     },
-    game: async (parent, { gameId }) => {
-      return await Game.findOne({ gameId: gameId });
+    game: async (parent, { gameName }) => {
+      return await Game.findOne({ gameName: gameName });
     },
   },
 
@@ -61,7 +62,8 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError("Incorrect credentials");
       }
-      const token = signToken(user);
+      const token = await signToken(user);
+      console.log('token from resolvers:', token);
       return { token, user };
     },
     addChat: async (parent, args, context) => {
@@ -104,10 +106,11 @@ const resolvers = {
           { new: true },
         );
         await Game.findOneAndUpdate(
-          { _id: args.gameId },
+          { _id: args.gameId},
           { $push: { scores: args } },
           { new: true },
         );
+        console.log('args:', args);
         return newScore;
       // }
       // throw new AuthenticationError('You need to be logged in!');
