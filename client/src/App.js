@@ -48,14 +48,11 @@ function App() {
     <div>
       <ApolloProvider client={client}>
         <Navbar />
-        <Signup />
-        <Signin />
         <Home />
         <Chat />
         <Game />
         <Arcade />
-        {/* <Flappybird />
-        <Barcadians /> */}
+        {/* <Barcadians /> */}
         <Footer />
       </ApolloProvider>
     </div>

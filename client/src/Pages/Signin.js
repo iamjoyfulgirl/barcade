@@ -1,15 +1,19 @@
 import {
-  Button,
-  Checkbox,
   Flex,
+  Box,
+  Checkbox,
   FormControl,
   FormLabel,
-  Heading,
   Input,
+  InputGroup,
+  HStack,
+  InputRightElement,
   Stack,
-  Image,
-  Link,
+  Button,
+  Heading,
   Text,
+  useColorModeValue,
+  Link,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
@@ -46,13 +50,26 @@ const Signin = (props) => {
       email: "",
       password: "",
     });
-  };
-
+  }; 
   return (
-    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
-      <Flex p={8} flex={1} align={"center"} justify={"center"}>
-        <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Heading fontSize={"2xl"}>Sign In</Heading>
+    <Flex
+     
+      align={"center"}
+      justify={"center"}
+      bg={useColorModeValue("gray.50", "gray.800")}
+    >
+    <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+        <Stack spacing={4} w={"full"} maxW={"lg"}>
+          <Heading fontSize={"4xl"} textAlign={"center"}>Sign In</Heading>
+          <Text fontSize={"lg"} color={"gray.600"} textAlign={"center"}>
+            Barcadia
+          </Text>
+          <Box
+          rounded={"lg"}
+          bg={useColorModeValue("white", "gray.700")}
+          boxShadow={"lg"}
+          p={8}
+        >
           {/* {need to add in data rendering of pages} */}
           {data ? (
             <p>
@@ -61,6 +78,8 @@ const Signin = (props) => {
             </p>
           ) : (
             <form onSubmit={handleFormSubmit}>
+              <HStack>
+                <Box>
               <FormControl id="email">
                 <FormLabel>Email</FormLabel>
                 <Input
@@ -93,6 +112,8 @@ const Signin = (props) => {
                   Sign in
                 </Button>
               </Stack>
+              </Box>
+              </HStack>
             </form>
           )}
 
@@ -104,18 +125,20 @@ const Signin = (props) => {
               Need to sign up? <Link to="/signup" color={"blue.400"}>Sign Up</Link>
             </Text>
           </Stack>
+          </Box>
         </Stack>
-      </Flex>
+      {/* </Flex> */}
       <Flex flex={1}>
-        <Image
+        {/* <Image
           alt={"Login Image"}
           objectFit={"cover"}
           src={
             "https://images.squarespace-cdn.com/content/v1/571fbc190442624a67dfb062/1517428106778-QHMJ33CQ8TD9207IRMYN/paddys-pub-set-2.JPG"
           }
-        />
+        /> */}
       </Flex>
     </Stack>
+    </Flex>
   );
 }
 
