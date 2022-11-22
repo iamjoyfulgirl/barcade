@@ -10,7 +10,7 @@ import Flappybird from "./Pages/Flappybird";
 import "./index.css";
 import Signin from "./Pages/Signin";
 
-// import Signup from "./Pages/Signup";
+import Signup from "./Pages/Signup";
 import {
   ApolloClient,
   InMemoryCache,
@@ -47,7 +47,6 @@ function App() {
     <div>
       <ApolloProvider client={client}>
         <Navbar />
-        <Signin />
         <Home />
         <Chat />
         <Game />
