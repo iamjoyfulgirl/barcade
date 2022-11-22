@@ -4,6 +4,9 @@
   font-family: 'Press Start 2P', sans-serif;
   color: #eee;
   background-color: #222;
+  /* display: flex;
+  width: 100%;
+  justify-content: center; */
   /* background-color: #60b347; */
 }
 

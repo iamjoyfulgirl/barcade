@@ -8,7 +8,13 @@ import {
   Input,
   Text,
   Box,
+  VStack,
+  // Container,
+  Grid,
   Stack,
+
+  // StackDivider,
+  // SimpleGrid,
 } from "@chakra-ui/react";
 
 const Guessing = () => {
@@ -44,63 +50,73 @@ const Guessing = () => {
   };
 
   return (
-    <Stack className="body" display={"flex"}>
-      <Box className="header" position={"relative"} height={"35vh"}>
-        <Heading
-          fontSize={"4rem"}
-          textAlign={"center"}
-          position={"absolute"}
-          width={"100%"}
-        >
-          Guess My Number!
-        </Heading>
-        <Text
-          display={"flex"}
-          fontSize={"1.4rem"}
-          position={"absolute"}
-          top={"2rem"}
-          right={"2rem"}
-        >
-          (Between 1 and 20)
-        </Text>
-        <Button className="btn again" onClick={restartGame}>
-          Again!
-        </Button>
-        <div className="number">{randomNumber}</div>
-      </Box>
-      <Flex
-        className="main"
-        height={"65vh"}
-        color={"white"}
-        alignItems={"center"}
-        justifyContent={"space-around"}
-      >
-        <Box direction={{ base: "column", md: "row" }} w={"full"} maxW={"md"}>
-          <Input
-            disabled={disabled}
-            value={guess}
-            type="number"
-            padding={"2.5rem"}
-            textAlign={"center"}
-            fontSize={"5rem"}
-          />
-          <Button onClick={submitHandler} className="btn check">
-            Check!
-          </Button>
-        </Box>
-        <Box className="right" w={"52rem"} fontSize={"2rem"}>
-          <Text mb={"2rem"} h={"3rem"}>
-            {msg}
-          </Text>
-          <Text mb={"2rem"}>
-            💯 Score: <span className="score">20</span>
-          </Text>
-          <Text className="label-highscore">
-            🥇 Highscore: <span className="highscore">0</span>
-          </Text>
-        </Box>
-      </Flex>
-    </Stack>
+    <Box textAlign="center" fontSize="xl">
+      <Grid minH="100vh" p={3}>
+        <VStack spacing={8}>
+          <Stack className="body GameContainer" justify={"start"}>
+            <Box className="header" position={"relative"} height={"35vh"}>
+              <Heading
+                fontSize={"4rem"}
+                textAlign={"center"}
+                position={"absolute"}
+                width={"100%"}
+              >
+                Guess My Number!
+              </Heading>
+              <Text
+                display={"flex"}
+                fontSize={"1.4rem"}
+                position={"absolute"}
+                top={"2rem"}
+                right={"2rem"}
+              >
+                (Between 1 and 20)
+              </Text>
+              <Button className="btn again" onClick={restartGame}>
+                Again!
+              </Button>
+              <div className="number">{randomNumber}</div>
+            </Box>
+            <Flex
+              className="main"
+              height={"65vh"}
+              color={"white"}
+              alignItems={"center"}
+              justifyContent={"space-around"}
+            >
+              <Box
+                direction={{ base: "column", md: "row" }}
+                w={"full"}
+                maxW={"md"}
+              >
+                <Input
+                  disabled={disabled}
+                  value={guess}
+                  type="number"
+                  padding={"2.5rem"}
+                  textAlign={"center"}
+                  fontSize={"5rem"}
+                />
+                <Button onClick={submitHandler} className="btn check">
+                  Check!
+                </Button>
+              </Box>
+              <Box className="right" w={"52rem"} fontSize={"2rem"}>
+                <Text mb={"2rem"} h={"3rem"}>
+                  {msg}
+                </Text>
+                <Text mb={"2rem"}>
+                  💯 Score: <span className="score">20</span>
+                </Text>
+                <Text className="label-highscore">
+                  🥇 Highscore: <span className="highscore">0</span>
+                </Text>
+              </Box>
+            </Flex>
+          </Stack>
+        </VStack>
+      </Grid>
+    </Box>
   );
 };
 

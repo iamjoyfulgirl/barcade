@@ -63,3 +63,11 @@
   background-image: url('./images/Fire.jpg');
   background-position: center;
 }
+
+.GameContainer {
+  overflow: contain;
+  display: flex;
+  overflow: hidden;
+  height: 1000px;
+  width:1000px;
+}
