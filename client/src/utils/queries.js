@@ -15,7 +15,20 @@ query Me {
   me {
     _id
     drink
+    email
+    messages {
+      _id
+      chat
+      content
+      sender
+    }
     pic
+    scores {
+      _id
+      gameId
+      score
+      userId
+    }
     username
   }
 }
