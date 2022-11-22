@@ -27,11 +27,14 @@ export const ADD_USER = gql`
 export const ADD_TO_CHAT = gql`
 mutation AddToChat($chatId: ID!, $userId: ID!) {
   addToChat(chatId: $chatId, userId: $userId) {
-    token
-      user {
-        _id
-        username
-      }
+    _id
+    chatName
+    isGroupChat
+    users {
+      username
+      pic
+      _id
     }
   }
+}
 `;
