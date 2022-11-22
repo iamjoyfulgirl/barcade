@@ -38,3 +38,28 @@ mutation AddToChat($chatId: ID!, $userId: ID!) {
   }
 }
 `;
+
+export const ADD_SCORE = gql`
+mutation AddMessage($sender: ID!, $chat: ID!, $content: String!) {
+  addMessage(sender: $sender, chat: $chat, content: $content) {
+    _id
+    chat
+    content
+    sender
+  }
+}
+`;
+
+export const ADD_DRINK = gql`
+mutation AddDrink($userId: ID!, $drink: String!) {
+  addDrink(userId: $userId, drink: $drink) {
+    _id
+    drink
+    messages {
+      content
+      sender
+    }
+    username
+  }
+}
+`;
