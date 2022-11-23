@@ -1,7 +1,10 @@
-import React from 'react';
-import Navbar from './components/Navbar/Navbar';
-import Home from './Pages/Home';
-import Chat from './Pages/Chat';
+
+import React from "react";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./Pages/Home";
+// commented out while working on chat
+import Chat from "./Pages/Chat";
+
 //div issue occurring from here.
 // import Barcadians from "./Pages/Barcadians";
 import Footer from './components/Footer/Footer';
