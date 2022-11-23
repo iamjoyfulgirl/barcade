@@ -6,10 +6,11 @@ import Guessing from '../components/Games/Guessing';
 import Auth from '../utils/auth';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { QUERY_USER } from '../utils/queries';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 
 const Game = () => {
+  const [currentUse, setCurrentUser] = useState();
   // to remove once finalised these 2 images and commented out codes
   // const test = new URL("../../images/test.png", import.meta.url);
   // const tryOut = new URL("../../images/tryout.png", import.meta.url);
@@ -19,14 +20,11 @@ const Game = () => {
     userId = Auth.getProfile().data._id;
   } 
   
-  const { loading, error, data } = useQuery(QUERY_USER,
-      {
-        variables: { userId: userId },
-      },
-    );
+  const { loading, data } = useQuery(QUERY_USER, {
+      variables: { userId: userId },
+    });
 
-    if (error) return console.log('error', error);
-  const user = data?.me || data?.user;
+  const user = data?.user || {};
 
   return (
     <>
@@ -58,8 +56,7 @@ const Game = () => {
           </Heading>
           {Auth.loggedIn() ? (
             <Text className='quoutes' textAlign={'center'}>
-            {user.username}
-            {/* user */}
+            {user?.username}
             </Text> ) : (
           <Text className='quoutes' textAlign={'center'}>
             Day Man
