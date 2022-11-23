@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./Pages/Home";
 // commented out while working on chat
-import Chat from "./Pages/Chat";
+// import Chat from "./Pages/Chat";
 
 //div issue occurring from here.
 // import Barcadians from "./Pages/Barcadians";
@@ -52,7 +52,7 @@ function App() {
       <ApolloProvider client={client}>
         <Navbar />
         <Home />
-        <Chat />
+        {/* <Chat /> */}
         <Lobby />
         <Arcade />
         {/* <Barcadians /> */}
