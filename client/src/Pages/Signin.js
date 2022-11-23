@@ -23,7 +23,7 @@ import Auth from "../utils/auth";
 // export default function Signin() {
 const Signin = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [logIn, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,10 +38,10 @@ const Signin = (props) => {
     event.preventDefault();
     console.log(formState);
     try {
-      const { data } = await login({
+      const { data } = await logIn({
         variables: formState,
       });
-      Auth.login(data.login.token);
+      await Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }

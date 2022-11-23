@@ -48,6 +48,12 @@
   position: sticky;
 }
 
+.gameContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .theBird {
   z-index: 1;
   background-image: url('./images/Duck.png');

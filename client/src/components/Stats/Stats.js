@@ -1,4 +1,9 @@
 import {
+  Tabs,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
   Table,
   Thead,
   Tbody,
@@ -10,12 +15,31 @@ import {
 } from '@chakra-ui/react';
 
 import React from 'react';
+import { QUERY_SCORES, QUERY_GAMES} from '../../utils/queries';
+import { useEffect } from 'react';
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
+
 //Score needs to be auto updated with conditional features where if the score is higher than the current score then only will the score be changed other wise it remains the same as for the name we type them in as per meeting. --> PJ
 
 const Stats = () => {
   const bar = new URL('../../images/bar.gif', import.meta.url);
+
+  const { loading, data } = useQuery(QUERY_GAMES);
+
+  console.log('data:', data?.games);
+
   return (
     <div>
+      <Tabs size='lg' variant='enclosed'>
+        <TabList>
+          {data?.games.map((game, i) => { 
+            return <Tab key={i}>{game.gameName}</Tab>
+          })}
+        </TabList>
+      <TabPanels>
+
+      {data?.games.map((game, i) => {
+        return <TabPanel key={i}>
       <TableContainer>
         <div>
           <Image src={bar} alt='bar-image' />
@@ -23,27 +47,24 @@ const Stats = () => {
         <Table size='sm'>
           <Thead>
             <Tr>
-              <Th>Games</Th>
               <Th>Player High Score</Th>
               <Th isNumeric>Score</Th>
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>Guess Random Number</Td>
-              {/* {player name  and to be called here function below here} */}
-              <Td>Player name</Td>
-              <Td isNumeric>20</Td>
+            {game.topScores.map((topScore, i) => {
+              return <Tr key={i}>
+                <Td>{topScore.userId}</Td>
+                <Td isNumeric>{topScore.score}</Td>
             </Tr>
-            <Tr>
-              <Td>Flappy Bird</Td>
-              {/* {player name  and to be called here function below here} */}
-              <Td>Player name</Td>
-              <Td isNumeric>10</Td>
-            </Tr>
+              })}
           </Tbody>
         </Table>
       </TableContainer>
+      </TabPanel>
+      })}
+      </TabPanels>
+      </Tabs>
     </div>
   );
 };
