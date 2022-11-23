@@ -25,6 +25,6 @@
     "concurrently": "^7.5.0"
   },
   "dependencies": {
-    "use-socket.io-client": "^1.1.0"
+    "cors": "^2.8.5"
   }
 }
