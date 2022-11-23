@@ -23,8 +23,5 @@
   "homepage": "https://github.com/iamjoyfulgirl/barcade#readme",
   "devDependencies": {
     "concurrently": "^7.5.0"
-  },
-  "dependencies": {
-    "use-socket.io-client": "^1.1.0"
   }
 }

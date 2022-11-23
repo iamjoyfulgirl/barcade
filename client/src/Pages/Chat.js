@@ -14,9 +14,8 @@ function Chat() {
   const [nameInput, setNameInput] = useState('');
   const [room, setRoom] = useState('');
   const [input, setInput] = useState('');
-  
+
   const [socket] = useSocket('https://desolate-island-83244.herokuapp.com/');
-  
   socket.connect();
   console.log(socket);
 
