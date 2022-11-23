@@ -2,6 +2,7 @@ import React from "react";
 import "./guessingStyle.css";
 import { useState } from "react";
 import {
+  FormControl,
   Button,
   Flex,
   Heading,
@@ -9,56 +10,84 @@ import {
   Text,
   Box,
   VStack,
-  // Container,
   Grid,
   Stack,
-
-  // StackDivider,
-  // SimpleGrid,
 } from "@chakra-ui/react";
 
 const Guessing = () => {
-  const number = Math.trunc(Math.random() * 20) + 1;
-  const [guess, setGuess] = useState();
-  const [randomNumber, setRandomNumber] = useState("?");
-  // const [disabled, setDisabled] = useState(false);
-  const [msg, setMsg] = useState("Start guessing...");
+  // {Generating random number}
+  const secretNumber = Math.trunc(Math.random() * 20) + 1;
+  const [number, setNumber] = useState(secretNumber);
+  const [guess, setGuess] = useState("");
+  const [randomNumber, setRandomNumber] = useState(number);
+  const [msg, setMsg] = useState("");
   const [lowHighMsg, setlowHighMsg] = useState("");
   const [score, setScore] = useState(20);
   const [highScore, sethighScore] = useState();
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    console.log("called submitHandler");
+    // e.preventDefault();
     if (!guess) {
-      setMsg("❌ No Number");
-    } else if (Number(number) === Number(guess)) {
-      setMsg("💃🏼 Correct Number");
-      // setDisabled(true);
+      console.log("guess1", guess);
+      setlowHighMsg("❌ No Number");
+      msg("");
+    } else if (guess == number) {
+      setMsg("💃🏼 You Win");
+      setNumber(number);
+      // {HighScore Saved here needs to be pushed up}
+      sethighScore(score);
       setlowHighMsg("");
 
       if (score > highScore) {
         // {displaying score as the new highscore}
-        sethighScore = setScore;
+
+        console.log("high", highScore, "score", score);
       }
     } else if (guess > number) {
-      if (score > 0) {
-        setlowHighMsg("this is too high");
-        setScore(score - 1);
+      console.log("number", number, "guess", guess);
+
+      setlowHighMsg("this is too high");
+      setScore(score - 1);
+      if (score === 0) {
+        setScore(0);
+        setlowHighMsg("");
+        setMsg("You loose");
       }
-    } else {
-      setMsg("You Loose");
     }
+    // else if (score === 0) {
+    //   setMsg("You loose");
+    //   setlowHighMsg("");
+    // }
     if (guess < number) {
       setScore(score - 1);
       setlowHighMsg("this is too low");
+      if (score === 0) {
+        setScore(0);
+        setlowHighMsg("");
+        setMsg("You loose");
+      }
     }
   };
 
-  const restartGame = () => {
+  const onChange = (e) => {
+    e.preventDefault();
+    console.log("target", e.target.value);
+    const guess = e.target.value;
+    setGuess(guess);
+    console.log("guess", guess);
+  };
+
+  const restartGame = (e) => {
+    e.preventDefault();
+    console.log("called restartGame");
     // setDisabled(false);
     setMsg("");
-    setScore(20);
-    setRandomNumber(number);
-    setGuess();
+    setScore(score);
+    setRandomNumber(setNumber);
+    sethighScore(score);
   };
 
   return (
@@ -96,23 +125,27 @@ const Guessing = () => {
               alignItems={"center"}
               justifyContent={"space-around"}
             >
-              <Box
-                direction={{ base: "column", md: "row" }}
-                w={"full"}
-                maxW={"md"}
-              >
-                <Input
-                  // disabled={disabled}
-                  value={guess}
-                  type="number"
-                  padding={"2.5rem"}
-                  textAlign={"center"}
-                  fontSize={"5rem"}
-                />
-                <Button onClick={submitHandler} className="btn check">
-                  Check!
-                </Button>
-              </Box>
+              <form onSubmit={submitHandler}>
+                <Box
+                  direction={{ base: "column", md: "row" }}
+                  w={"full"}
+                  maxW={"md"}
+                >
+                  <FormControl>
+                    <Input
+                      value={guess.guess}
+                      onChange={onChange}
+                      type="text"
+                      padding={"2.5rem"}
+                      textAlign={"center"}
+                      fontSize={"5rem"}
+                    />
+                  </FormControl>
+                  <Button type="submit" className="btn check">
+                    Check!
+                  </Button>
+                </Box>
+              </form>
               <Box className="right" w={"52rem"} fontSize={"2rem"}>
                 <Text mb={"2rem"} h={"3rem"}>
                   {msg}
