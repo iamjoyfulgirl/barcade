@@ -11,63 +11,79 @@ const Online = props => props.data.map(m => <li id={m[0]}>{m[1]}</li>);
 
 function Chat() {
   const [id, setId] = useState('');
-  const [nameInput, setNameInput] = useState('');
+  const [userName, setUserName] = useState('');
   const [room, setRoom] = useState('');
   const [input, setInput] = useState('');
 
-  const [socket] = useSocket('https://desolate-island-83244.herokuapp.com/');
-  socket.connect();
-  console.log(socket);
+  const [socket] = useSocket('https://desolate-island-83244.herokuapp.com/', { transports: ['websocket'] }) // --> console logs socket.on, connected
 
+  // const [socket] = useSocket('https://desolate-island-83244.herokuapp.com/')
+  
+  
   const [messages, setMessages] = useImmer([]);
   const [online, setOnline] = useImmer([]);
-
+  
   useEffect(()=>{
-    socket.on('message que',(nick,message) => {
-      setMessages(draft => {
-        draft.push([nick,message])
-      })
-    });
+    
+    socket.on('connect', event => {
+      
+      socket.on('message que',(nick,message) => {
+        console.log("message feed", message)
+        setMessages(draft => {
+          draft.push([nick,message])
+        })
+      });
+      
+      socket.on('update',message => setMessages(draft => {
+        console.log('update', message)
+        draft.push(['',message]);
+      }));
+      
+      socket.on('people-list',people => {
+        let newState = [];
+        for(let person in people){
+          newState.push([people[person].id,people[person].nick]);
+        }
+        setOnline(draft=>{draft.push(...newState)});
+        console.log(online)
+      });
+      
+      socket.on('add-person',(nick,id)=>{
+        console.log('add person', nick)
+        setOnline(draft => {
+          draft.push([id,nick])
+        })
+      });
+      
+      socket.on('remove-person',id=>{
+        setOnline(draft => draft.filter(m => m[0] !== id))
+      });
+      
+      socket.on('chat message',(nick,message)=>{
+        console.log('chat message', message)
+        setMessages(draft => {draft.push([nick,message])})
+      });
+      
+      console.log('connected', event)
+      });
+      
+      socket.connect();
+    },[]);  
 
-    socket.on('update',message => setMessages(draft => {
-      draft.push(['',message]);
-    }));
 
-    socket.on('people-list',people => {
-      let newState = [];
-      for(let person in people){
-        newState.push([people[person].id,people[person].nick]);
-      }
-      setOnline(draft=>{draft.push(...newState)});
-      console.log(online)
-    });
 
-    socket.on('add-person',(nick,id)=>{
-      setOnline(draft => {
-        draft.push([id,nick])
-      })
-    });
-
-    socket.on('remove-person',id=>{
-      setOnline(draft => draft.filter(m => m[0] !== id))
-    });
-
-    socket.on('chat message',(nick,message)=>{
-      setMessages(draft => {draft.push([nick,message])})
-    });
-  },0);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!nameInput) {
-      return alert("Name can't be empty");
+    const handleSubmit = e => {
+      e.preventDefault();
+      if (!userName) {
+      return alert("Username can't be empty");
     }
-    setId(name);
-    socket.emit("join", name,room);
+    setId(userName);
+    socket.emit("join", userName,room);
   };
 
   const handleSend = e => {
     e.preventDefault();
+    console.log('handleSend', input)
     if(input !== ''){
       socket.emit('chat message',input,room);
       setInput('');
@@ -87,7 +103,7 @@ function Chat() {
   ) : (
     <div style={{ textAlign: 'center', margin: '30vh auto', width: '70%' }}>
       <form onSubmit={event => handleSubmit(event)}>
-        <input id="name" onChange={e => setNameInput(e.target.value.trim())} required placeholder="What is your name .." /><br />
+        <input id="name" onChange={e => setUserName(e.target.value.trim())} required placeholder="What is your name .." /><br />
         <input id="room" onChange={e => setRoom(e.target.value.trim())} placeholder="What is your room .." /><br />
         <button type="submit">Submit</button>
       </form>
