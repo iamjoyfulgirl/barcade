@@ -1,139 +1,160 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState, useEffect } from 'react';
-import useSocket from 'use-socket.io-client';
-import { useImmer } from 'use-immer';
+import React, { useState, useEffect } from "react";
+import useSocket from "use-socket.io-client";
+// import socketIOClient, { io } from "socket.io-client";
+import { useImmer } from "use-immer";
 
 // import './index.css';
 
-const Messages = props => props.data.map(m => m[0] !== '' ? (<li><strong>{m[0]}</strong> : <div className="innermsg">{m[1]}</div></li>) : (<li className="update">{m[1]}</li>) );
+const Messages = (props) =>
+  props.data.map((m) =>
+    m[0] !== "" ? (
+      <li>
+        <strong>{m[0]}</strong> : <div className="innermsg">{m[1]}</div>
+      </li>
+    ) : (
+      <li className="update">{m[1]}</li>
+    )
+  );
 
-const Online = props => props.data.map(m => <li id={m[0]}>{m[1]}</li>);
+const Online = (props) => props.data.map((m) => <li id={m[0]}>{m[1]}</li>);
 
 function Chat() {
-  const [id, setId] = useState('');
-  const [userName, setUserName] = useState('');
-  const [room, setRoom] = useState('');
-  const [input, setInput] = useState('');
+  const [id, setId] = useState("");
+  const [userName, setUserName] = useState("");
+  const [room, setRoom] = useState("");
+  const [input, setInput] = useState("");
+  // const [activeSocket, setActiveSocket] = useState();
 
-  const [socket] = useSocket('https://desolate-island-83244.herokuapp.com/', { transports: ['websocket'] }) // --> console logs socket.on, connected
+  // const [socket] = useSocket('https://desolate-island-83244.herokuapp.com/', { transports: ['websocket'] }) // --> console logs socket.on, connected
 
-  // const [socket] = useSocket('https://desolate-island-83244.herokuapp.com/')
-  
-  
+  const [socket] = useSocket("https://desolate-island-83244.herokuapp.com");
+  socket.connect();
+
   const [messages, setMessages] = useImmer([]);
   const [online, setOnline] = useImmer([]);
-  
-  useEffect(()=>{
-    
-    socket.on('connect', event => {
-      
-      socket.on('message que',(nick,message) => {
-        console.log("message feed", message)
-        setMessages(draft => {
-          draft.push([nick,message])
-        })
-      });
-      
-      socket.on('update',message => setMessages(draft => {
-        console.log('update', message)
-        draft.push(['',message]);
-      }));
-      
-      socket.on('people-list',people => {
-        let newState = [];
-        for(let person in people){
-          newState.push([people[person].id,people[person].nick]);
-        }
-        setOnline(draft=>{draft.push(...newState)});
-        console.log(online)
-      });
-      
-      socket.on('add-person',(nick,id)=>{
-        console.log('add person', nick)
-        setOnline(draft => {
-          draft.push([id,nick])
-        })
-      });
-      
-      socket.on('remove-person',id=>{
-        setOnline(draft => draft.filter(m => m[0] !== id))
-      });
-      
-      socket.on('chat message',(nick,message)=>{
-        console.log('chat message', message)
-        setMessages(draft => {draft.push([nick,message])})
-      });
-      
-      console.log('connected', event)
-      });
-      
-      socket.connect();
-    },[]);  
 
+  useEffect(() => {
+    // const socket = io("https://desolate-island-83244.herokuapp.com/");
 
+    socket.on("connect", (event) => {
+      console.log("connected", socket.connected);
+    });
 
-    const handleSubmit = e => {
-      e.preventDefault();
-      if (!userName) {
+    socket.on("disconnect", (reason) => {
+      console.log("disconnected", reason);
+    });
+
+    socket.on("message que", (nick, message) => {
+      console.log("message feed", message);
+      setMessages((draft) => {
+        draft.push([nick, message]);
+      });
+    });
+
+    socket.on("update", (message) =>
+      setMessages((draft) => {
+        console.log("update", message);
+        draft.push(["", message]);
+      })
+    );
+
+    socket.on("people-list", (people) => {
+      let newState = [];
+      for (let person in people) {
+        newState.push([people[person].id, people[person].nick]);
+      }
+      setOnline((draft) => {
+        draft.push(...newState);
+      });
+      console.log(online);
+    });
+
+    socket.on("add-person", (nick, id) => {
+      console.log("add person", nick);
+      setOnline((draft) => {
+        draft.push([id, nick]);
+      });
+    });
+
+    socket.on("remove-person", (id) => {
+      setOnline((draft) => draft.filter((m) => m[0] !== id));
+    });
+
+    socket.on("chat message", (nick, message) => {
+      console.log("chat message", message);
+      setMessages((draft) => {
+        draft.push([nick, message]);
+      });
+    });
+  }, 0);
+
+  //   setActiveSocket(socket);
+  // }, [setActiveSocket]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!userName) {
       return alert("Username can't be empty");
     }
     setId(userName);
-    socket.emit("join", userName,room);
+    socket.emit("join", userName, room);
   };
 
-  const handleSend = e => {
+  const handleSend = (e) => {
     e.preventDefault();
-    console.log('handleSend', input)
-    if(input !== ''){
-      socket.emit('chat message',input,room);
-      setInput('');
+    if (input !== "") {
+      console.log("handleSend", input);
+      socket.emit("chat message", input, room);
+      setInput("");
     }
   };
 
   return id ? (
-    <section style={{display:'flex',flexDirection:'row'}} >
-      <ul id="messages"><Messages data={messages} /></ul>
-      <ul id="online"> &#x1f310; : <Online data={online} /> </ul>
+    <section style={{ display: "flex", flexDirection: "row" }}>
+      <ul id="messages">
+        <Messages data={messages} />
+      </ul>
+      <ul id="online">
+        {" "}
+        &#x1f310; : <Online data={online} />{" "}
+      </ul>
+      <p>
+        {/* Room {room}
+       Username {userName} */}
+      </p>
       <div id="sendform">
-        <form onSubmit={e => handleSend(e)} style={{display: 'flex'}}>
-            <input id="m" onChange={e=>setInput(e.target.value.trim())} /><button style={{width:'75px'}} type="submit">Send</button>
+        <form onSubmit={(e) => handleSend(e)} style={{ display: "flex" }}>
+          <input id="m" onChange={(e) => setInput(e.target.value.trim())} />
+          <button style={{ width: "75px" }} type="submit">
+            Send
+          </button>
         </form>
       </div>
     </section>
   ) : (
-    <div style={{ textAlign: 'center', margin: '30vh auto', width: '70%' }}>
-      <form onSubmit={event => handleSubmit(event)}>
-        <input id="name" onChange={e => setUserName(e.target.value.trim())} required placeholder="What is your name .." /><br />
-        <input id="room" onChange={e => setRoom(e.target.value.trim())} placeholder="What is your room .." /><br />
+    <div style={{ textAlign: "center", margin: "30vh auto", width: "70%" }}>
+      <form onSubmit={(event) => handleSubmit(event)}>
+        <input
+          id="name"
+          onChange={(e) => setUserName(e.target.value.trim())}
+          required
+          placeholder="What is your name .."
+        />
+        <br />
+        <input
+          id="room"
+          onChange={(e) => setRoom(e.target.value.trim())}
+          placeholder="What is your room .."
+        />
+        <br />
         <button type="submit">Submit</button>
       </form>
     </div>
   );
-};
-
+}
 
 export default Chat;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useEffect, useState } from 'react';
 
@@ -157,8 +178,8 @@ export default Chat;
 // const Online = props => props.data.map(m => <li id={m[0]}>{m[1]}</li>);
 
 // export default () => { // sets id for each user in chat room
-//   const [id, setId] = useState(''); 
-  
+//   const [id, setId] = useState('');
+
 //   const [usernameInput, setUsernameInput] = useState('');
 
 //   // handles state of
@@ -174,8 +195,7 @@ export default Chat;
 //   // the useImmer hook manages state of arrays and objects w/o mutating the original state -- combine useState and Immer to give immutable state management -- this is helpful for managing lists of ppl who are online and messages that need to be displayed
 //   const [messages, setMessages] = useImmer([]);
 //   const [online, setOnline] = useImmer([]);
-  
-  
+
 //   useEffect(() => {
 //     socket.on('message feed', (user, message) => {
 //       setMessages(draft => {
@@ -211,9 +231,8 @@ export default Chat;
 //     });
 //   },0);
 
-  
 //   // intended to handle message input
-//   // Mark suggests api call -- useEffect every 15 secs 
+//   // Mark suggests api call -- useEffect every 15 secs
 //   // TO-DO: @cassandrakise @iamjoyfulgirl @Luan-Pham will need to invoke functions below to ensure user is logged infunction formSubmitHandler() {
 
 //   // will check if the user has an account (with name form field complete), necessary to send chat message
@@ -228,7 +247,6 @@ export default Chat;
 //       useSocket.emit('join', userName);
 //   };
 
-
 //   const handleSend = e => {
 //     e.preventDefault();
 //     if(input !== ''){
@@ -236,7 +254,6 @@ export default Chat;
 //       setInput('');
 //     }
 //   };
-
 
 // // TO-DO @cassandrakise @iamjoyfulgirl merge example with chakra component shell, starting on line 132
 
@@ -270,7 +287,7 @@ export default Chat;
 //   //       borderWidth={"1px"}
 //   //       borderRadius={"lg"}
 //   //       overflow="hidden"
-        
+
 //   //     >
 //   //       <Box
 //   //         d={"flex"}
@@ -292,12 +309,12 @@ export default Chat;
 //   //         <form onSubmit={formSubmitHandler}>
 //   //         <FormControl>
 //   //             <Box>
-//   //               <Input 
+//   //               <Input
 //   //                 placeholder={"Enter Message"}
 //   //                 name='message'
 //   //                 value={messages}
-//   //                 onChange={(e) => setMessages(e.target.value)} 
-//   //                 mb={3} 
+//   //                 onChange={(e) => setMessages(e.target.value)}
+//   //                 mb={3}
 //   //                 _hover={{ fontWeight: 'semibold' }}
 //   //               />
 //   //               <Button
@@ -315,4 +332,3 @@ export default Chat;
 //   //   </>
 //   // );
 // // }
-
