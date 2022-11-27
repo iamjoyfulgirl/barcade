@@ -4,29 +4,46 @@ import { useImmer } from "use-immer";
 // the useImmer hook manages state of arrays and objects w/o mutating the original state -- combine useState and Immer to give immutable state management -- this is helpful for managing lists of ppl who are online and messages that need to be displayed
 import {
   Box,
-  Input,
-  FormControl,
   Button,
   ButtonGroup,
+  Center,
   Container,
   Flex,
+  FormControl,
+  HStack,
+  Input,
+  List,
+  ListItem,
+  Stack,
   Text,
   Textarea,
 } from "@chakra-ui/react";
-import { ChevronRightIcon } from "@chakra-ui/icons";
 
 const Messages = (props) =>
   props.data.map((m) =>
     m[0] !== "" ? (
-      <li>
-        <strong>{m[0]}</strong> : <div className="innermsg">{m[1]}</div>
-      </li>
+      <List>
+        <ListItem>
+          <strong>{m[0]}</strong> : <div className="innermsg">{m[1]}</div>
+        </ListItem>
+      </List>
     ) : (
-      <li className="update">{m[1]}</li>
+      <List>
+        <ListItem>
+          <li className="update">{m[1]}</li>
+        </ListItem>
+      </List>
     )
   );
 
-const Online = (props) => props.data.map((m) => <li id={m[0]}>{m[1]}</li>);
+const Online = (props) =>
+  props.data.map((m) => (
+    <List>
+      <ListItem>
+        <li id={m[0]}>{m[1]}</li>
+      </ListItem>
+    </List>
+  ));
 
 function Chat() {
   const [id, setId] = useState("");
@@ -117,121 +134,125 @@ function Chat() {
 
   return id ? (
     <>
-     <Box
-        maxW="md"
-        maxH="md"
-        borderWidth={"1px"}
-        borderRadius={"lg"}
-        overflow="hidden"
-        >
-        
-      <Box style={{ display: "flex", flexDirection: "row" }}>
-        <Box id="messages-users-online">
-          <Container id="messages">
-            <Messages data={messages} />
-          </Container>
-          <Container id="online">
-            {" "}
-            &#x1f310; : <Online data={online} />{" "}
-          </Container>
-        </Box>
-      </Box>
-      <FormControl>
-        <div id="sendform">
-          <form onSubmit={(e) => handleSend(e)} style={{ display: "flex" }}>
-            <Input id="m" onChange={(e) => setInput(e.target.value.trim())} />
-            <Button
-              colorScheme={"green"}
-              style={{ width: "75px" }}
-              type="submit"
-            >
-              Send
-            </Button>
-          </form>
-        </div>
-      </FormControl>
-      </Box> 
+      <Center>
+        <HStack spacing="24px">
+          <Box
+            bg="brown"
+            textColor={"white"}
+            alignItems="center"
+            maxW="70%"
+            maxH="md"
+            h="md"
+            borderWidth={"1px"}
+            borderRadius={"lg"}
+            overflow="auto"
+            boxShadow={"xl"}
+            sx={{
+              "::-webkit-scrollbar": {
+                display: "true",
+              },
+            }}
+          >
+            <Stack>
+              <Box style={{ display: "flex"}}>
+                <Container id="messages" listItem as="null">
+                  <Messages data={messages} />
+                </Container>
+              </Box>
+              <FormControl>
+                <HStack padding="5" id="sendform">
+                  <form
+                    onSubmit={(e) => handleSend(e)}
+                    style={{ display: "flex" }}
+                  >
+                    <Input
+                      bg="white"
+                      id="m"
+                      onChange={(e) => setInput(e.target.value.trim())}
+                      placeholder="Enter message"
+                      textColor={'black'}
+                    />
+                    <Button
+                      colorScheme={"green"}
+                      style={{ width: "75px" }}
+                      type="submit"
+                    >
+                      Send
+                    </Button>
+                  </form>
+                </HStack>
+              </FormControl>
+            </Stack>
+          </Box>
+          <Box
+            bg={"#9C4221"}
+            textColor={"white"}
+            maxW="30%"
+            maxH="md"
+            h="md"
+            borderWidth={"1px"}
+            borderRadius={"lg"}
+            overflow="auto"
+            boxShadow={"xl"}
+            sx={{
+              "::-webkit-scrollbar": {
+                display: "true",
+              },
+            }}
+          >
+            <Container id="online">
+              <HStack>
+                <p> &#x1f310; :</p>
+                <Online data={online} />{" "}
+              </HStack>
+            </Container>
+          </Box>
+        </HStack>
+      </Center>
     </>
   ) : (
     <>
-      <div style={{ textAlign: "center", margin: "30vh auto", width: "70%" }}>
-        <FormControl>
-          <form onSubmit={(event) => handleSubmit(event)}>
-            <Input
-              id="name"
-              onChange={(e) => setUserName(e.target.value.trim())}
-              required
-              placeholder="What is your username?"
-            />
-            <br />
-            <Input
-              id="room"
-              onChange={(e) => setRoom(e.target.value.trim())}
-              placeholder="What bar are you meeting folks at?"
-            />
-            <br />
-            <Button colorScheme={"green"} type="submit">
-              Submit
-            </Button>
-          </form>
-        </FormControl>
-      </div>
+      <Center>
+        <Box
+          bg={"#9C4221"}
+          w="lg"
+          maxH="md"
+          borderWidth={"1px"}
+          borderRadius={"lg"}
+          overflow="hidden"
+          padding={"2"}
+          boxShadow={"xl"}
+        >
+          <div
+            style={{ textAlign: "center", margin: "30vh auto", width: "70%" }}
+          >
+            <FormControl>
+              <form onSubmit={(event) => handleSubmit(event)}>
+                <Input
+                  bg="white"
+                  id="name"
+                  onChange={(e) => setUserName(e.target.value.trim())}
+                  required
+                  placeholder="What is your username?"
+                />
+                <br />
+                <Input
+                  bg="white"
+                  id="room"
+                  onChange={(e) => setRoom(e.target.value.trim())}
+                  placeholder="What bar are you meeting folks at?"
+                />
+                <br />
+                <Button margin={"5"} colorScheme={"green"} type="submit">
+                  Submit
+                </Button>
+              </form>
+            </FormControl>
+          </div>
+        </Box>
+      </Center>
     </>
   );
 }
 
 export default Chat;
-
-//   // return id ? (
-//   //   <>
-//   //     <Box
-//   //       maxW={"sm"}
-//   //       maxH={"sm"}
-//   //       borderWidth={"1px"}
-//   //       borderRadius={"lg"}
-//   //       overflow="hidden"
-
-//   //     >
-//   //       <Box
-//   //         d={"flex"}
-//   //         justifyContent={"space-between"}
-//   //         w={"100%"}
-//   //         h={"91.5vh"}
-//   //         p={"10px"}
-//   //       >
-//   //         <Textarea
-//   //           maxW={'flex'}
-//   //           border="1px"
-//   //           borderColor="gray.200"
-//   //           boxShadow="xl"
-//   //           isDisabled
-//   //           placeholder="Here is a sample placeholder" // pass feed ie Chat Feed Component in through here -- will need to be updated
-//   //         />
-//   //       <Box p="6">
-//   //       <Box display={"flex"} alignItems={"baseline"}></Box>
-//   //         <form onSubmit={formSubmitHandler}>
-//   //         <FormControl>
-//   //             <Box>
-//   //               <Input
-//   //                 placeholder={"Enter Message"}
-//   //                 name='message'
-//   //                 value={messages}
-//   //                 onChange={(e) => setMessages(e.target.value)}
-//   //                 mb={3}
-//   //                 _hover={{ fontWeight: 'semibold' }}
-//   //               />
-//   //               <Button
-//   //                 type='submit'
-//   //                 rightIcon={<ChevronRightIcon />}
-//   //                 colorScheme={"red"}
-//   //                 variant={"solid"}
-//   //               ></Button>
-//   //             </Box>
-//   //           </FormControl>
-//   //           </form>
-//   //         </Box>
-//   //       </Box>
-//   //     </Box>
-//   //   </>
-//   // );
-// // }
