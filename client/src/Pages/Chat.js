@@ -1,10 +1,19 @@
-/* eslint-disable no-restricted-globals */
 import React, { useState, useEffect } from "react";
 import useSocket from "use-socket.io-client";
-// import socketIOClient, { io } from "socket.io-client";
 import { useImmer } from "use-immer";
-
-// import './index.css';
+// the useImmer hook manages state of arrays and objects w/o mutating the original state -- combine useState and Immer to give immutable state management -- this is helpful for managing lists of ppl who are online and messages that need to be displayed
+import {
+  Box,
+  Input,
+  FormControl,
+  Button,
+  ButtonGroup,
+  Container,
+  Flex,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 const Messages = (props) =>
   props.data.map((m) =>
@@ -24,11 +33,10 @@ function Chat() {
   const [userName, setUserName] = useState("");
   const [room, setRoom] = useState("");
   const [input, setInput] = useState("");
-  // const [activeSocket, setActiveSocket] = useState();
 
-  // const [socket] = useSocket('https://desolate-island-83244.herokuapp.com/', { transports: ['websocket'] }) // --> console logs socket.on, connected
-
-  const [socket] = useSocket("https://desolate-island-83244.herokuapp.com");
+  const [socket] = useSocket("https://desolate-island-83244.herokuapp.com", {
+    transports: ["websocket"],
+  });
   socket.connect();
 
   const [messages, setMessages] = useImmer([]);
@@ -89,9 +97,6 @@ function Chat() {
     });
   }, 0);
 
-  //   setActiveSocket(socket);
-  // }, [setActiveSocket]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!userName) {
@@ -111,173 +116,71 @@ function Chat() {
   };
 
   return id ? (
-    <section style={{ display: "flex", flexDirection: "row" }}>
-      <ul id="messages">
-        <Messages data={messages} />
-      </ul>
-      <ul id="online">
-        {" "}
-        &#x1f310; : <Online data={online} />{" "}
-      </ul>
-      <p>
-        {/* Room {room}
-       Username {userName} */}
-      </p>
-      <div id="sendform">
-        <form onSubmit={(e) => handleSend(e)} style={{ display: "flex" }}>
-          <input id="m" onChange={(e) => setInput(e.target.value.trim())} />
-          <button style={{ width: "75px" }} type="submit">
-            Send
-          </button>
-        </form>
-      </div>
-    </section>
+    <>
+     <Box
+        maxW="md"
+        maxH="md"
+        borderWidth={"1px"}
+        borderRadius={"lg"}
+        overflow="hidden"
+        >
+        
+      <Box style={{ display: "flex", flexDirection: "row" }}>
+        <Box id="messages-users-online">
+          <Container id="messages">
+            <Messages data={messages} />
+          </Container>
+          <Container id="online">
+            {" "}
+            &#x1f310; : <Online data={online} />{" "}
+          </Container>
+        </Box>
+      </Box>
+      <FormControl>
+        <div id="sendform">
+          <form onSubmit={(e) => handleSend(e)} style={{ display: "flex" }}>
+            <Input id="m" onChange={(e) => setInput(e.target.value.trim())} />
+            <Button
+              colorScheme={"green"}
+              style={{ width: "75px" }}
+              type="submit"
+            >
+              Send
+            </Button>
+          </form>
+        </div>
+      </FormControl>
+      </Box> 
+    </>
   ) : (
-    <div style={{ textAlign: "center", margin: "30vh auto", width: "70%" }}>
-      <form onSubmit={(event) => handleSubmit(event)}>
-        <input
-          id="name"
-          onChange={(e) => setUserName(e.target.value.trim())}
-          required
-          placeholder="What is your name .."
-        />
-        <br />
-        <input
-          id="room"
-          onChange={(e) => setRoom(e.target.value.trim())}
-          placeholder="What is your room .."
-        />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <>
+      <div style={{ textAlign: "center", margin: "30vh auto", width: "70%" }}>
+        <FormControl>
+          <form onSubmit={(event) => handleSubmit(event)}>
+            <Input
+              id="name"
+              onChange={(e) => setUserName(e.target.value.trim())}
+              required
+              placeholder="What is your username?"
+            />
+            <br />
+            <Input
+              id="room"
+              onChange={(e) => setRoom(e.target.value.trim())}
+              placeholder="What bar are you meeting folks at?"
+            />
+            <br />
+            <Button colorScheme={"green"} type="submit">
+              Submit
+            </Button>
+          </form>
+        </FormControl>
+      </div>
+    </>
   );
 }
 
 export default Chat;
-
-// import React, { useEffect, useState } from 'react';
-
-// import useSocket from 'use-socket.io-client';
-// import { useImmer } from 'use-immer';
-// import {
-//   Box,
-//   Input,
-//   FormControl,
-//   Button,
-//   ButtonGroup,
-//   Container,
-//   Flex,
-//   Text,
-//   Textarea,
-// } from "@chakra-ui/react";
-// import { ChevronRightIcon } from "@chakra-ui/icons";
-
-// const Messages = props => props.data.map(m => m[0] !== '' ? (<li><strong>{m[0]}</strong> : <div className="innermsg">{m[1]}</div></li>) : (<li className="update">{m[1]}</li>) );
-
-// const Online = props => props.data.map(m => <li id={m[0]}>{m[1]}</li>);
-
-// export default () => { // sets id for each user in chat room
-//   const [id, setId] = useState('');
-
-//   const [usernameInput, setUsernameInput] = useState('');
-
-//   // handles state of
-//   const [input, setInput] = useState('');
-
-//     // uses socket APIs and react hooks version of socket.io library (https://socket.io/docs/v4/)
-//   // TO DO @cassandrakise @iamjoyfulgirl talk with Mark about whether this is necessary? (server calls in chat vs on app.js )
-//   // make this a link to external repo heroku app
-//   const [socket] = useSocket('<https://desolate-island-83244.herokuapp.com/>');
-//   socket.connect();
-
-//   //sets messages and online status per user in chat feed -- message History
-//   // the useImmer hook manages state of arrays and objects w/o mutating the original state -- combine useState and Immer to give immutable state management -- this is helpful for managing lists of ppl who are online and messages that need to be displayed
-//   const [messages, setMessages] = useImmer([]);
-//   const [online, setOnline] = useImmer([]);
-
-//   useEffect(() => {
-//     socket.on('message feed', (user, message) => {
-//       setMessages(draft => {
-//         draft.push([nick, message]) // user replaces "nick???" in example
-//       })
-//     });
-
-//     socket.on('update', message => setMessages (draft => {
-//       draft.push(['', message]);
-//     }));
-
-//     socket.on('people-list', people => {
-//       let newState = [];
-//       for (let person in people){
-//         newState.push([people[person].id, people[person].nick]);
-//       }
-//       setOnline(draft=>{draft.push(...newState)});
-//       console.log(online)
-//     });
-
-//     socket.on('add-person', (nick, id) => {
-//       setOnline(draft => {
-//         draft.push([id, nick])
-//       })
-//     });
-
-//     socket.on('remove-person',id => {
-//       setOnline(draft => draft.filter (m => m[0] !== id))
-//     });
-
-//     socket.on('chat-message', (nick, message) => {
-//       setMessages(draft => {draft.push([nick, message])})
-//     });
-//   },0);
-
-//   // intended to handle message input
-//   // Mark suggests api call -- useEffect every 15 secs
-//   // TO-DO: @cassandrakise @iamjoyfulgirl @Luan-Pham will need to invoke functions below to ensure user is logged infunction formSubmitHandler() {
-
-//   // will check if the user has an account (with name form field complete), necessary to send chat message
-//   const handleSubmit = e => {
-//     // if user has an account, it will set an id for user
-//     e.preventDefault();
-//       // checks to see if logged in
-//       if (!loggedIn) {
-//         return alert ('You must have account to use the chat. Please log in.')
-//       }
-//       setId(userName);
-//       useSocket.emit('join', userName);
-//   };
-
-//   const handleSend = e => {
-//     e.preventDefault();
-//     if(input !== ''){
-//       socket.emit('chat message', input, room);
-//       setInput('');
-//     }
-//   };
-
-// // TO-DO @cassandrakise @iamjoyfulgirl merge example with chakra component shell, starting on line 132
-
-// return id ? (
-//   <section style={{display:'flex',flexDirection:'row'}} >
-//     <ul id="messages"><Messages data={messages} /></ul>
-//     <ul id="online"> &#x1f310; : <Online data={online} /> </ul>
-//     <div id="sendform">
-//       <form onSubmit={e => handleSend(e)} style={{display: 'flex'}}>
-//           <input id="m" onChange={e=>setInput(e.target.value.trim())} /><button style={{width:'75px'}} type="submit">Send</button>
-//       </form>
-//     </div>
-//   </section>
-// ) : (
-//   <div style={{ textAlign: 'center', margin: '30vh auto', width: '70%' }}>
-//     <form onSubmit={event => handleSubmit(event)}>
-//       <input id="name" onChange={e => setNameInput(e.target.value.trim())} required placeholder="What is your name .." /><br />
-//       <input id="room" onChange={e => setRoom(e.target.value.trim())} placeholder="What is your room .." /><br />
-//       <button type="submit">Submit</button>
-//     </form>
-//   </div>
-// )
-// };
-// // }
 
 //   // return id ? (
 //   //   <>
