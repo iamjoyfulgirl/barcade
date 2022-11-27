@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 // commented out while working on chat
 import Chat from "./Pages/Chat";
 
+
 //div issue occurring from here.
 // import Barcadians from "./Pages/Barcadians";
 import Footer from './components/Footer/Footer';
@@ -52,7 +53,9 @@ function App() {
       <ApolloProvider client={client}>
         <Navbar />
         <Home />
+        <br/>
         <Chat />
+        <br/>
         <Lobby />
         <Arcade />
         {/* <Barcadians /> */}
