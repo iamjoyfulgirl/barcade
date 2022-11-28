@@ -14,9 +14,11 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { ADD_SCORE } from "../../utils/mutation";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import Auth from '../../utils/auth';
+import { QUERY_USER } from '../../utils/queries';
 
-const Guessing = () => {
+export default function Guessing() {
   // {Generating random number}
   const secretNumber = Math.trunc(Math.random() * 20) + 1;
   const [number, setNumber] = useState(secretNumber);
@@ -26,7 +28,20 @@ const Guessing = () => {
   const [lowHighMsg, setlowHighMsg] = useState("");
   const [score, setScore] = useState(20);
   const [topScores, settopScores] = useState();
-  const [addScore, { data, loading, error }] = useMutation(ADD_SCORE);
+
+  const [addScore, { loading, error }] = useMutation(ADD_SCORE);
+
+  let userId;
+
+  if (Auth.loggedIn()) {
+    userId = Auth.getProfile().data._id;
+  } 
+  
+  const { data } = useQuery(QUERY_USER, {
+      variables: { userId: userId },
+    });
+
+  const user = data?.user || {};
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -93,6 +108,18 @@ const Guessing = () => {
     settopScores(score);
   };
 
+  const saveScore = async () => {
+    try{ 
+     await addScore({
+    variables: {
+      userId: user?._id,
+      gameId: "637afa025d0edd0c50cfae11",
+      score: score,
+    }})
+    } catch (e) {
+      console.error(e);
+    }};
+
   return (
     <Box textAlign="center" fontSize="xl">
       <Grid minH="100vh" p={3}>
@@ -149,15 +176,7 @@ const Guessing = () => {
                   </Button>
 
                   <Button
-                    onClick={addScore(
-                      // still need to add userId via context?
-                      {
-                        variables: {
-                          usergameName: "Guessing Game",
-                          score: score,
-                        },
-                      } && console.log("this is where")
-                    )}
+                    onClick={saveScore}
                     className="btn check"
                   >
                     Save score!
@@ -184,4 +203,4 @@ const Guessing = () => {
   );
 };
 
-export default Guessing;
+// export default Guessing;
