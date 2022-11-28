@@ -5,18 +5,19 @@ import { useImmer } from "use-immer";
 import {
   Box,
   Button,
-  ButtonGroup,
   Center,
   Container,
   Flex,
+  Footer,
   FormControl,
+  FormLabel,
   HStack,
   Input,
   List,
   ListItem,
   Stack,
-  Text,
-  Textarea,
+  StackDivider,
+  VStack,
 } from "@chakra-ui/react";
 
 const Messages = (props) =>
@@ -60,8 +61,6 @@ function Chat() {
   const [online, setOnline] = useImmer([]);
 
   useEffect(() => {
-    // const socket = io("https://desolate-island-83244.herokuapp.com/");
-
     socket.on("connect", (event) => {
       console.log("connected", socket.connected);
     });
@@ -130,6 +129,7 @@ function Chat() {
       socket.emit("chat message", input, room);
       setInput("");
     }
+    e.target.reset();
   };
 
   return id ? (
@@ -141,55 +141,49 @@ function Chat() {
             textColor={"white"}
             alignItems="center"
             maxW="70%"
-            maxH="md"
-            h="md"
+            h="lg"
             borderWidth={"1px"}
             borderRadius={"lg"}
-            overflow="auto"
             boxShadow={"xl"}
-            sx={{
-              "::-webkit-scrollbar": {
-                display: "true",
-              },
-            }}
+            overflow="auto"
           >
-            <Stack>
-              <Box style={{ display: "flex"}}>
+            <Stack divider={<StackDivider />}>
+              <Box overflow="auto" style={{ display: "flex" }}>
                 <Container id="messages" listItem as="null">
                   <Messages data={messages} />
                 </Container>
               </Box>
-              <FormControl>
-                <HStack padding="5" id="sendform">
-                  <form
-                    onSubmit={(e) => handleSend(e)}
-                    style={{ display: "flex" }}
-                  >
-                    <Input
-                      bg="white"
-                      id="m"
-                      onChange={(e) => setInput(e.target.value.trim())}
-                      placeholder="Enter message"
-                      textColor={'black'}
-                    />
-                    <Button
-                      colorScheme={"green"}
-                      style={{ width: "75px" }}
-                      type="submit"
+                <FormControl>
+                  <HStack padding="5" id="sendform" overflow-anchor="auto">
+                    <form
+                      borderTop={0}
+                      onSubmit={(e) => handleSend(e)}
+                      style={{ display: "flex" }}
                     >
-                      Send
-                    </Button>
-                  </form>
-                </HStack>
-              </FormControl>
+                      <Input
+                        bg="white"
+                        id="m"
+                        onChange={(e) => setInput(e.target.value.trim())}
+                        placeholder="Enter message"
+                        textColor={"black"}
+                      />
+                      <Button
+                        colorScheme={"green"}
+                        style={{ width: "75px" }}
+                        type="submit"
+                      >
+                        Send
+                      </Button>
+                    </form>
+                  </HStack>
+                </FormControl>
             </Stack>
           </Box>
           <Box
             bg={"#9C4221"}
             textColor={"white"}
             maxW="30%"
-            maxH="md"
-            h="md"
+            h="lg"
             borderWidth={"1px"}
             borderRadius={"lg"}
             overflow="auto"
@@ -212,45 +206,69 @@ function Chat() {
     </>
   ) : (
     <>
-      <Center>
-        <Box
-          bg={"#9C4221"}
-          w="lg"
-          maxH="md"
-          borderWidth={"1px"}
-          borderRadius={"lg"}
-          overflow="hidden"
-          padding={"2"}
-          boxShadow={"xl"}
-        >
-          <div
-            style={{ textAlign: "center", margin: "30vh auto", width: "70%" }}
-          >
+      {/* <Center> */}
+      <Flex
+        textAlign={"center"}
+        bg={"#9C4221"}
+        borderRadius={"lg"}
+        borderWidth={"1px"}
+        boxShadow={"xl"}
+        h="lg"
+        margin="auto"
+        w="lg"
+        flex={1}
+        align={"center"}
+        justify={"center"}
+      >
+        <VStack>
+          <Center>
             <FormControl>
-              <form onSubmit={(event) => handleSubmit(event)}>
-                <Input
-                  bg="white"
-                  id="name"
-                  onChange={(e) => setUserName(e.target.value.trim())}
-                  required
-                  placeholder="What is your username?"
-                />
-                <br />
-                <Input
-                  bg="white"
-                  id="room"
-                  onChange={(e) => setRoom(e.target.value.trim())}
-                  placeholder="What bar are you meeting folks at?"
-                />
-                <br />
-                <Button margin={"5"} colorScheme={"green"} type="submit">
-                  Submit
-                </Button>
-              </form>
+              <div style={{ textAlign: "center", margin: "auto" }}>
+                <form
+                  onSubmit={(event) => handleSubmit(event)}
+                  padding="5"
+                  margin="5"
+                >
+                  <FormLabel
+                    textColor={"white"}
+                    textStyle={"strong"}
+                    fontSize={"2xl"}
+                    textAlign={"center"}
+                  >
+                    {" "}
+                    Barcade Chat{" "}
+                  </FormLabel>
+                  <Center w={"md"}>
+                    <Input
+                      bg="white"
+                      id="name"
+                      onChange={(e) => setUserName(e.target.value.trim())}
+                      required
+                      placeholder="What's your name?"
+                      w="md"
+                    />
+                  </Center>
+                  <Center>
+                    <Input
+                      mt={"3"}
+                      bg="white"
+                      id="room"
+                      onChange={(e) => setRoom(e.target.value.trim())}
+                      placeholder="What bar are you meeting folks at?"
+                      w="md"
+                    />
+                  </Center>
+                  <br />
+                  <Button colorScheme={"green"} type="submit">
+                    Sit Down at the Bar 🥃
+                  </Button>
+                </form>
+              </div>
             </FormControl>
-          </div>
-        </Box>
-      </Center>
+          </Center>
+        </VStack>
+      </Flex>
+      {/* </Center> */}
     </>
   );
 }
