@@ -130,7 +130,7 @@ const Navbar = () => {
                 smooth={true}
                 offset={50}
                 duration={500}
-                onClick={() => { setOverlay(<OverlayOne />); onOpen()}}>
+                onClick={() => (setOverlay(<OverlayOne />), onOpen())}>
                 <h1>Login/Sign Up</h1>
               </Link>
             </Tab> )}
