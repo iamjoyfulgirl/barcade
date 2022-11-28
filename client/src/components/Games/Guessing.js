@@ -13,6 +13,8 @@ import {
   Grid,
   Stack,
 } from "@chakra-ui/react";
+import { ADD_SCORE } from "../../utils/mutation";
+import { useMutation } from "@apollo/client";
 
 const Guessing = () => {
   // {Generating random number}
@@ -23,7 +25,8 @@ const Guessing = () => {
   const [msg, setMsg] = useState("");
   const [lowHighMsg, setlowHighMsg] = useState("");
   const [score, setScore] = useState(20);
-  const [highScore, sethighScore] = useState();
+  const [topScores, settopScores] = useState();
+  const [addScore, { data, loading, error }] = useMutation(ADD_SCORE);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -37,14 +40,14 @@ const Guessing = () => {
     } else if (guess == number) {
       setMsg("💃🏼 You Win");
       setNumber(number);
-      // {HighScore Saved here needs to be pushed up}
-      sethighScore(score);
+      // {topScores Saved here needs to be pushed up}
+      settopScores(score);
       setlowHighMsg("");
 
-      if (score > highScore) {
-        // {displaying score as the new highscore}
+      if (score > topScores) {
+        // {displaying score as the new topScores}
 
-        console.log("high", highScore, "score", score);
+        console.log("high", topScores, "score", score);
       }
     } else if (guess > number) {
       console.log("number", number, "guess", guess);
@@ -87,7 +90,7 @@ const Guessing = () => {
     setMsg("");
     setScore(score);
     setRandomNumber(setNumber);
-    sethighScore(score);
+    settopScores(score);
   };
 
   return (
@@ -144,6 +147,21 @@ const Guessing = () => {
                   <Button type="submit" className="btn check">
                     Check!
                   </Button>
+
+                  <Button
+                    onClick={addScore(
+                      // still need to add userId via context?
+                      {
+                        variables: {
+                          usergameName: "Guessing Game",
+                          score: score,
+                        },
+                      } && console.log("this is where")
+                    )}
+                    className="btn check"
+                  >
+                    Save score!
+                  </Button>
                 </Box>
               </form>
               <Box className="right" w={"52rem"} fontSize={"2rem"}>
@@ -154,8 +172,8 @@ const Guessing = () => {
                 <Text mb={"2rem"}>
                   💯 Score: <span className="score">{score}</span>
                 </Text>
-                <Text className="label-highscore">
-                  🥇 Highscore: <span className="highscore">{highScore}</span>
+                <Text className="label-topScores">
+                  🥇 topScores: <span className="topScores">{topScores}</span>
                 </Text>
               </Box>
             </Flex>
