@@ -1,15 +1,16 @@
 import {
-  Button,
-  Container,
+  Stack,
   ModalBody,
   Modal,
   ModalContent,
   ModalOverlay,
   useDisclosure,
+  Text,
 } from "@chakra-ui/react";
 import Flappybird from "./Flappybird";
 import Guessing from "../components/Games/Guessing";
 import { useState } from "react";
+import { TbBrandAppleArcade } from "react-icons/tb";
 
 const Arcade = () => {
   const [currentGame, setCurrentGame] = useState("none");
@@ -62,26 +63,42 @@ const Arcade = () => {
     case "none":
     default:
       return (
-        <Container>
-          <Button
-            onClick={() => {
-              setCurrentGame("guessing") && setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-          >
-            Play Guessing Game
-          </Button>
+        <Stack
+          textAlign={"center"}
+          direction={{ base: "column", md: "row" }}
+          display={"flex"}
+          justifyContent={"space-between"}
+          margin={"20%"}
+        >
+          <div>
+            <Text color={"Purple"} className="quoutes">
+              Play Guessing Game!
+            </Text>
+            <button
+              onClick={() => {
+                setCurrentGame("guessing") && setOverlay(<OverlayOne />);
+                onOpen();
+              }}
+            >
+              <TbBrandAppleArcade size="xl" />
+            </button>
+          </div>
           ;
-          <Button
-            onClick={() => {
-              setCurrentGame("flappybird") && setOverlay(<OverlayOne />);
-              onOpen();
-            }}
-          >
-            Play Game Flappybird
-          </Button>
+          <div>
+            <Text color={"Purple"} className="quoutes">
+              Play Flappy Bird!
+            </Text>
+            <button
+              onClick={() => {
+                setCurrentGame("flappybird") && setOverlay(<OverlayOne />);
+                onOpen();
+              }}
+            >
+              <TbBrandAppleArcade size="xl" />
+            </button>
+          </div>
           ;
-        </Container>
+        </Stack>
       );
   }
 };
