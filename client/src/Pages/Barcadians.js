@@ -43,7 +43,7 @@ const Barcadians = () => {
     color={useColorModeValue("gray.700", "gray.400")}
     px={3}
   >
-    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+    software engineer, Front End Engineer, Full Stack Web Developer{" "}
   </Text>
   <Stack mt={8} justify={"center"} spacing={4}>
               <IconButton
@@ -89,7 +89,7 @@ const Barcadians = () => {
     color={useColorModeValue("gray.700", "gray.400")}
     px={3}
   >
-    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+    software engineer, Front End Engineer, Full Stack Web Developer{" "}
   </Text>
   <Stack mt={8} justify={"center"} spacing={4}>
   <IconButton
@@ -135,7 +135,7 @@ const Barcadians = () => {
     color={useColorModeValue("gray.700", "gray.400")}
     px={3}
   >
-    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+    software engineer, Front End Engineer, Full Stack Web Developer{" "}
   </Text>
   <Stack mt={8} justify={"center"} spacing={4}>
   <IconButton
@@ -181,7 +181,7 @@ const Barcadians = () => {
     color={useColorModeValue("gray.700", "gray.400")}
     px={3}
   >
-    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+    software engineer, Front End Engineer, Full Stack Web Developer{" "}
   </Text>
   <Stack mt={8} justify={"center"} spacing={4}>
   <IconButton
@@ -228,7 +228,7 @@ const Barcadians = () => {
     color={useColorModeValue("gray.700", "gray.400")}
     px={3}
   >
-    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+    software engineer, Front End Engineer, Full Stack Web Developer{" "}
   </Text>
   <Stack mt={8} justify={"center"} spacing={4}>
   <IconButton
