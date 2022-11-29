@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Text } from '@chakra-ui/react';
+import { Text, Button } from '@chakra-ui/react';
 import styled from 'styled-components';
+import { ADD_SCORE } from '../../utils/mutation';
+import { useMutation, useQuery } from '@apollo/client';
+import Auth from '../../utils/auth';
+import { QUERY_USER } from '../../utils/queries';
 
 const birdSize = 100;
 const gameHeight = 1000;
@@ -16,9 +20,23 @@ function App() {
   const [pipeHeight, setPipeheight] = useState(0);
   const [pipeLeft, setPipeleft] = useState(gameWidth - pipeWidth);
   const [score, setScore] = useState(0);
+  const [topScores, settopScores] = useState();
+
+  const [addScore, { loading, error }] = useMutation(ADD_SCORE);
 
   const bottomPipe = gameHeight - pipeHeight - pipeHole;
 
+  let userId;
+
+  if (Auth.loggedIn()) {
+    userId = Auth.getProfile().data._id;
+  }
+
+  const { data } = useQuery(QUERY_USER, {
+    variables: { userId: userId },
+  });
+
+  const user = data?.user || {};
   useEffect(() => {
     let timeID;
     if (gameStart && birdTop < gameHeight - birdSize) {
@@ -30,6 +48,21 @@ function App() {
       clearInterval(timeID);
     };
   });
+
+  const saveScore = async () => {
+    try {
+      await addScore({
+        variables: {
+          userId: user?._id,
+          username: user?.username,
+          gameName: 'Flappy Bird',
+          score: score,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   useEffect(() => {
     let pipeID;
@@ -68,29 +101,38 @@ function App() {
   };
 
   return (
-    <Div onClick={jumpHandle}>
-      <Text position='relative' objectPosition='center'>
-        {score}
-      </Text>
-      <BirdContainer className='gameBox' height={gameHeight} width={gameWidth}>
-        <PipeContainer>
-          <Pipe
-            className='thePipes'
-            top={0}
-            width={pipeWidth}
-            height={pipeHeight}
-            left={pipeLeft}
-          />
-          <Pipe
-            className='thePipes'
-            top={pipeHole}
-            width={pipeWidth}
-            height={bottomPipe}
-            left={pipeLeft}
-          />
-        </PipeContainer>
-        <Bird className='theBird' size={birdSize} top={birdTop} />
-      </BirdContainer>
+    <Div>
+      <Button onClick={saveScore} className='btn check'>
+        Save score!
+      </Button>
+      <Div onClick={jumpHandle}>
+        <Text fontSize='20px' position='relative' objectPosition='center'>
+          {score}
+        </Text>
+        <BirdContainer
+          className='gameBox'
+          height={gameHeight}
+          width={gameWidth}
+        >
+          <PipeContainer>
+            <Pipe
+              className='thePipes'
+              top={0}
+              width={pipeWidth}
+              height={pipeHeight}
+              left={pipeLeft}
+            />
+            <Pipe
+              className='thePipes'
+              top={pipeHole}
+              width={pipeWidth}
+              height={bottomPipe}
+              left={pipeLeft}
+            />
+          </PipeContainer>
+          <Bird className='theBird' size={birdSize} top={birdTop} />
+        </BirdContainer>
+      </Div>
     </Div>
   );
 }
