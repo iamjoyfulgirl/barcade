@@ -107,14 +107,14 @@ function App() {
         Save score!
       </Button>
       <Div onClick={jumpHandle}>
-        <Text fontSize='20px' position='relative' objectPosition='center'>
-          {score}
-        </Text>
         <BirdContainer
           className='gameBox'
           height={gameHeight}
           width={gameWidth}
         >
+          <Text fontSize={100} position='relative' objectPosition='center'>
+            {score}
+          </Text>
           <PipeContainer>
             <Pipe
               className='thePipes'
