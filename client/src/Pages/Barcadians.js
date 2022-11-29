@@ -72,7 +72,9 @@ const Barcadians = () => {
           >
             <Avatar
               size={"xl"}
-              src={"imghere"}
+              src={
+                "https://media-exp1.licdn.com/dms/image/D5603AQGvTZUj65Dlpw/profile-displayphoto-shrink_800_800/0/1669704333489?e=1675296000&v=beta&t=zNxsCssjBjWTDHuC_ayIMd_nVoieqhbtHSJTA4zk-yQ"
+              }
               alt={"Avatar Alt"}
               mb={4}
               pos={"relative"}
@@ -162,7 +164,9 @@ const Barcadians = () => {
           >
             <Avatar
               size={"xl"}
-              src={"imghere"}
+              src={
+                "https://media-exp1.licdn.com/dms/image/C4D03AQH_64_ERXnOvw/profile-displayphoto-shrink_800_800/0/1554969029702?e=1675296000&v=beta&t=AV1LBGtukIfTRRRqMbPVd00-xW0i0YWBIfmHxG4xcIg"
+              }
               alt={"Avatar Alt"}
               mb={4}
               pos={"relative"}

@@ -89,7 +89,6 @@
   left: 0;
   z-index: 1;
   transition: .3s ease-in;
-  overflow: hidden;
   background: rgba(128, 69, 49,.9);
   
 }
