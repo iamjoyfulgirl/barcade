@@ -3,17 +3,18 @@ import {
   ModalBody,
   Modal,
   ModalContent,
+  ModalHeader,
   ModalOverlay,
   useDisclosure,
   Text,
   ModalFooter,
   Button
 } from "@chakra-ui/react";
-import Flappybird from "./Flappybird";
+import Flappybird from "../components/Games/Flappybird";
 import Guessing from "../components/Games/Guessing";
 import { useState } from "react";
 import { TbBrandAppleArcade } from "react-icons/tb";
-
+import { ImCross } from 'react-icons/im';
 
 const Arcade = () => {
   const [currentGame, setCurrentGame] = useState("none");
@@ -47,6 +48,11 @@ const Arcade = () => {
           {overlay}
           <ModalContent>
             <ModalBody>
+            <ModalHeader>
+                <button variant='primary' onClick={onClose}>
+                  <ImCross className='coolStuff' size='xl' />
+                </button>
+              </ModalHeader>
               <Guessing handleModalClose={() => setShowModal(true)} />
             </ModalBody>         <ModalFooter>
             <Button onClick={onClose}>Cancel</Button>
@@ -60,7 +66,12 @@ const Arcade = () => {
           {overlay}
           <ModalContent>
             <ModalBody>
-              <Flappybird handleModalClose={() => setShowModal(true)} />
+            <ModalHeader>
+                <button variant='primary' onClick={onClose}>
+                  <ImCross className='coolStuff' size='xl' />
+                </button>
+              </ModalHeader>
+              <Flappybird zIndex="1" handleModalClose={() => setShowModal(true)} />
             </ModalBody>
             <ModalFooter>
             <Button onClick={onClose}>Cancel</Button>

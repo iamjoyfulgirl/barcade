@@ -9,7 +9,7 @@ import Chat from "./Pages/Chat";
 import Barcadians from "./Pages/Barcadians";
 import Footer from "./components/Footer/Footer";
 import Lobby from "./Pages/Lobby";
-import Flappybird from "./Pages/Flappybird";
+
 import "./index.css";
 import Signin from "./Pages/Signin";
 import Signup from "./Pages/Signup";
