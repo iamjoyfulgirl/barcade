@@ -14,19 +14,10 @@ import Flappybird from "../components/Games/Flappybird";
 import Guessing from "../components/Games/Guessing";
 import { useState } from "react";
 import { TbBrandAppleArcade } from "react-icons/tb";
-import { ImCross } from 'react-icons/im';
+import { ImCross } from "react-icons/im";
 
 const Arcade = () => {
   const [currentGame, setCurrentGame] = useState("none");
-  // const [overlay, setOverlay] = React.useState(<OverlayOne />);
-  // const OverlayOne = () => (
-  //   <ModalOverlay
-  //     bg="none"
-  //     backdropFilter="auto"
-  //     backdropInvert="80%"
-  //     backdropBlur="2px"
-  //   />
-  // );
 
   const OverlayOne = () => (
     <ModalOverlay
@@ -48,49 +39,51 @@ const Arcade = () => {
           {overlay}
           <ModalContent>
             <ModalBody>
-
-            <ModalHeader>
-                <button variant='primary' onClick={onClose}>
-                  <ImCross className='coolStuff' size='xl' />
+              <ModalHeader>
+                <button variant="primary" onClick={onClose}>
+                  <ImCross className="coolStuff" size="xl" />
                 </button>
               </ModalHeader>
-           
-              <Guessing handleModalClose={() => setShowModal(false)} />
 
-            </ModalBody>         <ModalFooter>
-            <Button onClick={() => onClose && setCurrentGame("Arcade")}>Cancel</Button>
-        </ModalFooter>        </ModalContent>
+              <Guessing handleModalClose={() => setShowModal(false)} />
+            </ModalBody>{" "}
+            <ModalFooter>
+              <Button onClick={() => onClose && setCurrentGame("Arcade")}>
+                Cancel
+              </Button>
+            </ModalFooter>{" "}
+          </ModalContent>
         </Modal>
       );
-      break;
+
     case "flappybird":
       return (
         <Modal isCentered isOpen={isOpen} onClose={onClose} size="full">
           {overlay}
           <ModalContent>
             <ModalBody>
-
-            <ModalHeader>
-                <button variant='primary' onClick={onClose}>
-                  <ImCross className='coolStuff' size='xl' />
+              <ModalHeader>
+                <button variant="primary" onClick={onClose}>
+                  <ImCross className="coolStuff" size="xl" />
                 </button>
               </ModalHeader>
-             
 
               <Flappybird handleModalClose={() => setShowModal(false)} />
-
             </ModalBody>
             <ModalFooter>
-            <Button onClick={() => onClose && setCurrentGame("Arcade")}>Cancel</Button>
-        </ModalFooter>
+              <Button onClick={() => onClose && setCurrentGame("Arcade")}>
+                Cancel
+              </Button>
+            </ModalFooter>
           </ModalContent>
         </Modal>
       );
-      break;
-      case "Arcade" :
-        return (
+
+    case "Arcade":
+      return (
         <Stack
-        className="/Arcade" id="Arcade"
+          className="/Arcade"
+          id="Arcade"
           textAlign={"center"}
           direction={{ base: "column", md: "row" }}
           display={"flex"}
@@ -103,7 +96,7 @@ const Arcade = () => {
               Play Guessing Game!
             </Text>
             <button
-              variant="primary" 
+              variant="primary"
               onClick={() => {
                 setCurrentGame("guessing") && setOverlay(<OverlayOne />);
                 onOpen();
@@ -128,12 +121,15 @@ const Arcade = () => {
             </button>
           </div>
           ;
-        </Stack>)
-        break;
-default:
+        </Stack>
+      );
+
+    default:
       return (
         <Stack
-        className="/Arcade" id="Arcade"
+          background={"orange"}
+          className="/Arcade"
+          id="Arcade"
           textAlign={"center"}
           direction={{ base: "column", md: "row" }}
           display={"flex"}
@@ -146,7 +142,7 @@ default:
               Play Guessing Game!
             </Text>
             <button
-              variant="primary" 
+              variant="primary"
               onClick={() => {
                 setCurrentGame("guessing") && setOverlay(<OverlayOne />);
                 onOpen();

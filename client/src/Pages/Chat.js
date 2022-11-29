@@ -8,7 +8,6 @@ import {
   Center,
   Container,
   Flex,
-  Footer,
   FormControl,
   FormLabel,
   HStack,
@@ -153,30 +152,30 @@ function Chat() {
                   <Messages data={messages} />
                 </Container>
               </Box>
-                <FormControl>
-                  <HStack padding="5" id="sendform" overflow-anchor="auto">
-                    <form
-                      borderTop={0}
-                      onSubmit={(e) => handleSend(e)}
-                      style={{ display: "flex" }}
+              <FormControl>
+                <HStack padding="5" id="sendform" overflow-anchor="auto">
+                  <form
+                    borderTop={0}
+                    onSubmit={(e) => handleSend(e)}
+                    style={{ display: "flex" }}
+                  >
+                    <Input
+                      bg="white"
+                      id="m"
+                      onChange={(e) => setInput(e.target.value.trim())}
+                      placeholder="Enter message"
+                      textColor={"black"}
+                    />
+                    <Button
+                      colorScheme={"green"}
+                      style={{ width: "75px" }}
+                      type="submit"
                     >
-                      <Input
-                        bg="white"
-                        id="m"
-                        onChange={(e) => setInput(e.target.value.trim())}
-                        placeholder="Enter message"
-                        textColor={"black"}
-                      />
-                      <Button
-                        colorScheme={"green"}
-                        style={{ width: "75px" }}
-                        type="submit"
-                      >
-                        Send
-                      </Button>
-                    </form>
-                  </HStack>
-                </FormControl>
+                      Send
+                    </Button>
+                  </form>
+                </HStack>
+              </FormControl>
             </Stack>
           </Box>
           <Box
@@ -207,7 +206,9 @@ function Chat() {
   ) : (
     <>
       {/* <Center> */}
-      <Flex className="/Chat" id="Chat"
+      <Flex
+        className="/Chat"
+        id="Chat"
         textAlign={"center"}
         bg={"#9C4221"}
         borderRadius={"lg"}

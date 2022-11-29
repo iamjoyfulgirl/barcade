@@ -1,4 +1,3 @@
-import React from "react";
 import "./guessingStyle.css";
 import { useState } from "react";
 import {
@@ -19,16 +18,16 @@ import { QUERY_USER } from "../../utils/queries";
 
 export default function Guessing() {
   // {Generating random number}
-  const secretNumber = Math.trunc(Math.random() * 20) + 1;
+  let secretNumber = Number(Math.trunc(Math.random() * 50) + 1);
   const [number, setNumber] = useState(secretNumber);
   const [guess, setGuess] = useState("");
-  const [randomNumber, setRandomNumber] = useState(number);
+  const [randomNumber, setRandomNumber] = useState("?");
   const [msg, setMsg] = useState("");
   const [lowHighMsg, setlowHighMsg] = useState("");
   const [score, setScore] = useState(20);
   const [topScores, settopScores] = useState();
 
-  const [addScore, { loading, error }] = useMutation(ADD_SCORE);
+  const [addScore] = useMutation(ADD_SCORE);
 
   let userId;
 
@@ -51,9 +50,10 @@ export default function Guessing() {
       console.log("guess1", guess);
       setlowHighMsg("❌ No Number");
       msg("");
-    } else if (guess == number) {
+    } else if (Number(guess) === Number(number)) {
       setMsg("💃🏼 You Win");
-      setNumber(number);
+      setRandomNumber(number);
+
       // {topScores Saved here needs to be pushed up}
       settopScores(score);
       setlowHighMsg("");
@@ -64,7 +64,7 @@ export default function Guessing() {
         console.log("high", topScores, "score", score);
       }
     } else if (guess > number) {
-      console.log("number", number, "guess", guess);
+      console.log("number", secretNumber, "guess", guess);
 
       setlowHighMsg("this is too high");
       setScore(score - 1);
@@ -102,9 +102,11 @@ export default function Guessing() {
     console.log("called restartGame");
     // setDisabled(false);
     setMsg("");
-    setScore(score);
-    setRandomNumber(setNumber);
+    setScore(20);
+    setNumber(Number(Math.trunc(Math.random() * 50) + 1));
+    setRandomNumber("?");
     settopScores(score);
+    setGuess("best of luck");
   };
 
   const saveScore = async () => {
@@ -135,14 +137,14 @@ export default function Guessing() {
                 top={"2rem"}
                 right={"20%"}
               >
-                Guess My Number!(1 to 20)
+                Guess My Number!(1 to 50)
               </Text>
               <Button
                 display={"flex"}
                 className="btn again"
                 onClick={restartGame}
               >
-                Play!
+                Again!
               </Button>
               <div className="number">{randomNumber}</div>
             </Box>

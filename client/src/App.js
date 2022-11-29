@@ -4,15 +4,12 @@ import Home from "./Pages/Home";
 // commented out while working on chat
 import Chat from "./Pages/Chat";
 
-
 //div issue occurring from here.
 import Barcadians from "./Pages/Barcadians";
 import Footer from "./components/Footer/Footer";
 import Lobby from "./Pages/Lobby";
 
 import "./index.css";
-import Signin from "./Pages/Signin";
-import Signup from "./Pages/Signup";
 import {
   ApolloClient,
   InMemoryCache,
@@ -54,9 +51,9 @@ function App() {
       <ApolloProvider client={client}>
         <Navbar />
         <Home />
-        <br/>
+        <br />
         <Chat />
-        <br/>
+        <br />
         <Lobby />
         <Arcade />
         <Barcadians />
