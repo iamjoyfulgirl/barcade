@@ -42,7 +42,7 @@ const Barcadians = () => {
               color={useColorModeValue("gray.700", "gray.400")}
               px={3}
             >
-              software engineer, Front End Engineer, Full Stack Web Developer{" "}
+              Software Engineer, Front End Engineer, Full Stack Web Developer{" "}
             </Text>
             <Stack mt={8} justify={"center"} spacing={4}>
               <IconButton
@@ -88,7 +88,7 @@ const Barcadians = () => {
               color={useColorModeValue("gray.700", "gray.400")}
               px={3}
             >
-              software engineer, Front End Engineer, Full Stack Web Developer{" "}
+              Software Engineer, Front End Engineer, Full Stack Web Developer{" "}
             </Text>
             <Stack mt={8} justify={"center"} spacing={4}>
               <IconButton
@@ -126,7 +126,7 @@ const Barcadians = () => {
               pos={"relative"}
             />
             <Heading fontSize={"2xl"} fontFamily={"body"}>
-              Cassie Kisse
+              Cassie Kise
             </Heading>
 
             <Text
@@ -134,7 +134,7 @@ const Barcadians = () => {
               color={useColorModeValue("gray.700", "gray.400")}
               px={3}
             >
-              software engineer, Front End Engineer, Full Stack Web Developer{" "}
+              Software Engineer, Front End Engineer, Full Stack Web Developer{" "}
             </Text>
             <Stack mt={8} justify={"center"} spacing={4}>
               <IconButton
@@ -180,7 +180,7 @@ const Barcadians = () => {
               color={useColorModeValue("gray.700", "gray.400")}
               px={3}
             >
-              software engineer, Front End Engineer, Full Stack Web Developer{" "}
+              Software Engineer, Front End Engineer, Full Stack Web Developer{" "}
             </Text>
             <Stack mt={8} justify={"center"} spacing={4}>
               <IconButton
@@ -226,7 +226,7 @@ const Barcadians = () => {
               color={useColorModeValue("gray.700", "gray.400")}
               px={3}
             >
-              software engineer, Front End Engineer, Full Stack Web Developer{" "}
+              Software Engineer, Front End Engineer, Full Stack Web Developer{" "}
             </Text>
             <Stack mt={8} justify={"center"} spacing={4}>
               <IconButton
