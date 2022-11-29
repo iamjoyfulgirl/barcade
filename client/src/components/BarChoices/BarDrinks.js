@@ -25,23 +25,23 @@ const BarDrinks = () => {
               setCheckedItems([e.target.checked, checkedItems[1]])
             }
           >
-            Mixers: Mai Tai
+            Cocktail: Mai Tai
           </Checkbox>
-          <Checkbox
+          {/* <Checkbox
             isChecked={checkedItems[1]}
             onChange={(e) =>
               setCheckedItems([checkedItems[0], e.target.checked])
             }
           >
             Beer: Blue Moon
-          </Checkbox>
+          </Checkbox> */}
           <Checkbox
             isChecked={checkedItems[2]}
             onChange={(e) =>
               setCheckedItems([checkedItems[0], e.target.checked])
             }
           >
-            Beer: Too heys
+            Cocktail: Extra Dirty Martini with Gin
           </Checkbox>
           <Checkbox
             isChecked={checkedItems[3]}
@@ -49,7 +49,7 @@ const BarDrinks = () => {
               setCheckedItems([checkedItems[0], e.target.checked])
             }
           >
-            Beer: Barasingi
+            Cocktail: Lime Margarita with Salt
           </Checkbox>
           <Checkbox
             isChecked={checkedItems[4]}
@@ -65,7 +65,7 @@ const BarDrinks = () => {
               setCheckedItems([checkedItems[0], e.target.checked])
             }
           >
-            Beer: Crown-lager
+            Cocktail: Strawberry Daiquiri
           </Checkbox>
           <Checkbox
             isChecked={checkedItems[6]}
@@ -89,7 +89,7 @@ const BarDrinks = () => {
               setCheckedItems([checkedItems[0], e.target.checked])
             }
           >
-            Beer: Carlsberg
+            Cocktail: Scotch on the Rocks
           </Checkbox>
         </Stack>
       </Box>
