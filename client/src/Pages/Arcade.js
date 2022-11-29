@@ -7,7 +7,7 @@ import {
   useDisclosure,
   Text,
   ModalFooter,
-  Button
+  Button,
 } from "@chakra-ui/react";
 import Flappybird from "./Flappybird";
 import Guessing from "../components/Games/Guessing";
@@ -47,9 +47,9 @@ const Arcade = () => {
           {overlay}
           <ModalContent>
             <ModalBody>
-              <Guessing handleModalClose={() => setShowModal(true)} />
+              <Guessing handleModalClose={() => setShowModal(false)} />
             </ModalBody>         <ModalFooter>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={() => onClose && setCurrentGame("Arcade")}>Cancel</Button>
         </ModalFooter>        </ModalContent>
         </Modal>
       );
@@ -60,16 +60,58 @@ const Arcade = () => {
           {overlay}
           <ModalContent>
             <ModalBody>
-              <Flappybird handleModalClose={() => setShowModal(true)} />
+              <Flappybird handleModalClose={() => setShowModal(false)} />
             </ModalBody>
             <ModalFooter>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={() => onClose && setCurrentGame("Arcade")}>Cancel</Button>
         </ModalFooter>
           </ModalContent>
         </Modal>
       );
       break;
       case "Arcade" :
+        return (
+        <Stack
+        className="/Arcade" id="Arcade"
+          textAlign={"center"}
+          direction={{ base: "column", md: "row" }}
+          display={"flex"}
+          justifyContent={"space-between"}
+          margin={"20%"}
+          position={"relative"}
+        >
+          <div>
+            <Text color={"Purple"} className="quoutes">
+              Play Guessing Game!
+            </Text>
+            <button
+              variant="primary" 
+              onClick={() => {
+                setCurrentGame("guessing") && setOverlay(<OverlayOne />);
+                onOpen();
+              }}
+            >
+              <TbBrandAppleArcade className="coolStuff" size="xl" />
+            </button>
+          </div>
+          ;
+          <div>
+            <Text color={"Purple"} className="quoutes">
+              Play Flappy Bird!
+            </Text>
+            <button
+              variant="primary"
+              onClick={() => {
+                setCurrentGame("flappybird") && setOverlay(<OverlayOne />);
+                onOpen();
+              }}
+            >
+              <TbBrandAppleArcade className="coolStuff" size="xl" />
+            </button>
+          </div>
+          ;
+        </Stack>)
+        break;
 default:
       return (
         <Stack
