@@ -56,7 +56,7 @@ function App() {
           userId: user?._id,
           username: user?.username,
           gameName: 'Flappy Bird',
-          score: score,
+          score: topScores,
         },
       });
     } catch (e) {
@@ -85,6 +85,7 @@ function App() {
     const hitBottom = birdTop <= 1000 && birdTop >= 1000 - bottomPipe;
     if (pipeLeft >= 0 && pipeLeft <= pipeWidth && (hitTop || hitBottom)) {
       setGamestart(false);
+      settopScores(score);
     }
   }, [birdTop, pipeHeight, bottomPipe, pipeLeft]);
 
