@@ -5,390 +5,257 @@ import {
   Center,
   Text,
   Stack,
-  Button,
-  Badge,
-  useColorModeValue,
-} from "@chakra-ui/react";
 
-export default function Barcadians() {
+
+  useColorModeValue,
+  IconButton
+} from "@chakra-ui/react";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+
+
+const Barcadians = () => {
   return (
-    <div div className="barcadians" id="barcadians">
+    <div div className="/Barcadians" id="Barcadians">
       <Stack
         minH={"100vh"}
         direction={{ base: "column", md: "row" }}
         justify={"center"}
       >
-        <Center py={6}>
-          <Box
-            maxW={"320px"}
-            w={"full"}
-            bg={useColorModeValue("white", "gray.900")}
+        <Center>
+        <Box  textAlign={"center"} bg={useColorModeValue("white", "gray.900")}
             boxShadow={"2xl"}
-            rounded={"lg"}
-            p={6}
-            textAlign={"center"}
-          >
-            <Avatar
-              size={"xl"}
-              src={
-                "https://media-exp1.licdn.com/dms/image/C4D03AQFwoXR0bgHYWw/profile-displayphoto-shrink_800_800/0/1668041483470?e=1673481600&v=beta&t=fFJWrzplEEIP6R1xjEntZNissdq-2jwu0tLAv0Nmzr8"
-              }
-              alt={"Avatar Alt"}
-              mb={4}
-              pos={"relative"}
-            />
-            <Heading fontSize={"2xl"} fontFamily={"body"}>
-              Phinjock Sherpa(PJ)
-            </Heading>
-
-            <Text
-              textAlign={"center"}
-              color={useColorModeValue("gray.700", "gray.400")}
-              px={3}
             >
-              Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
-            </Text>
+    <Avatar
+    size={"xl"}
+    src={
+      "imghere"
+    }
+    alt={"Avatar Alt"}
+    mb={4}
+    pos={"relative"}
+  />
+  <Heading fontSize={"2xl"} fontFamily={"body"}>
+    Sherri
+  </Heading>
 
-            <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-              <Badge
-                px={2}
-                py={1}
-                bg={useColorModeValue("gray.50", "gray.800")}
-                fontWeight={"400"}
-              >
-                Mongoose,Express,React,Node
-              </Badge>
-            </Stack>
-
-            <Stack mt={8} direction={"row"} spacing={4}>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                _focus={{
-                  bg: "gray.200",
-                }}
+  <Text
+    textAlign={"center"}
+    color={useColorModeValue("gray.700", "gray.400")}
+    px={3}
+  >
+    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+  </Text>
+  <Stack mt={8} justify={"center"} spacing={4}>
+              <IconButton
+            
+                as="a"
+                href="https://github.com/pjsherpa"
+                aria-label="GitHub-for-pj"
+                icon={<FaGithub />}
               >
                 Github
-              </Button>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                bg={"blue.400"}
-                color={"white"}
-                boxShadow={
-                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                }
-                _hover={{
-                  bg: "blue.500",
-                }}
-                _focus={{
-                  bg: "blue.500",
-                }}
+              </IconButton>
+              <IconButton
+               
+               
+                as="a"
+                href="https://www.linkedin.com/in/phinjock-sherpa/"
+                aria-label="GitHub-for-pj"
+                icon={<FaLinkedinIn />}
               >
                 LinkedIn
-              </Button>
+              </IconButton>
             </Stack>
-          </Box>
-        </Center>
-        <Center py={6}>
-          <Box
-            maxW={"320px"}
-            w={"full"}
-            bg={useColorModeValue("white", "gray.900")}
-            boxShadow={"2xl"}
-            rounded={"lg"}
-            p={6}
-            textAlign={"center"}
+  </Box>
+  </Center>
+  <Center>
+  <Box  textAlign={"center"} bg={useColorModeValue("white", "gray.900")}
+            boxShadow={"2xl"}>
+    <Avatar
+    size={"xl"}
+    src={
+      "imghere"
+    }
+    alt={"Avatar Alt"}
+    mb={4}
+    pos={"relative"}
+  />
+  <Heading fontSize={"2xl"} fontFamily={"body"}>
+    Mike
+  </Heading>
+
+  <Text
+    textAlign={"center"}
+    color={useColorModeValue("gray.700", "gray.400")}
+    px={3}
+  >
+    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+  </Text>
+  <Stack mt={8} justify={"center"} spacing={4}>
+  <IconButton
+            
+            as="a"
+            href="https://github.com/pjsherpa"
+            aria-label="GitHub-for-pj"
+            icon={<FaGithub />}
           >
-            <Avatar
-              size={"xl"}
-              src={
-                "https://media-exp1.licdn.com/dms/image/C4D03AQFwoXR0bgHYWw/profile-displayphoto-shrink_800_800/0/1668041483470?e=1673481600&v=beta&t=fFJWrzplEEIP6R1xjEntZNissdq-2jwu0tLAv0Nmzr8"
-              }
-              alt={"Avatar Alt"}
-              mb={4}
-              pos={"relative"}
-            />
-            <Heading fontSize={"2xl"} fontFamily={"body"}>
-              Phinjock Sherpa(PJ)
-            </Heading>
-
-            <Text
-              textAlign={"center"}
-              color={useColorModeValue("gray.700", "gray.400")}
-              px={3}
-            >
-              Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
-            </Text>
-
-            <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-              <Badge
-                px={2}
-                py={1}
-                bg={useColorModeValue("gray.50", "gray.800")}
-                fontWeight={"400"}
-              >
-                Mongoose,Express,React,Node
-              </Badge>
-            </Stack>
-
-            <Stack mt={8} direction={"row"} spacing={4}>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                _focus={{
-                  bg: "gray.200",
-                }}
-              >
-                Github
-              </Button>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                bg={"blue.400"}
-                color={"white"}
-                boxShadow={
-                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                }
-                _hover={{
-                  bg: "blue.500",
-                }}
-                _focus={{
-                  bg: "blue.500",
-                }}
-              >
-                LinkedIn
-              </Button>
-            </Stack>
-          </Box>
-        </Center>
-        <Center py={6}>
-          <Box
-            maxW={"320px"}
-            w={"full"}
-            bg={useColorModeValue("white", "gray.900")}
-            boxShadow={"2xl"}
-            rounded={"lg"}
-            p={6}
-            textAlign={"center"}
+            Github
+          </IconButton>
+          <IconButton
+           
+           
+            as="a"
+            href="https://www.linkedin.com/in/phinjock-sherpa/"
+            aria-label="GitHub-for-pj"
+            icon={<FaLinkedinIn />}
           >
-            <Avatar
-              size={"xl"}
-              src={
-                "https://media-exp1.licdn.com/dms/image/C4D03AQFwoXR0bgHYWw/profile-displayphoto-shrink_800_800/0/1668041483470?e=1673481600&v=beta&t=fFJWrzplEEIP6R1xjEntZNissdq-2jwu0tLAv0Nmzr8"
-              }
-              alt={"Avatar Alt"}
-              mb={4}
-              pos={"relative"}
-            />
-            <Heading fontSize={"2xl"} fontFamily={"body"}>
-              Phinjock Sherpa(PJ)
-            </Heading>
-
-            <Text
-              textAlign={"center"}
-              color={useColorModeValue("gray.700", "gray.400")}
-              px={3}
-            >
-              Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
-            </Text>
-
-            <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-              <Badge
-                px={2}
-                py={1}
-                bg={useColorModeValue("gray.50", "gray.800")}
-                fontWeight={"400"}
-              >
-                Mongoose,Express,React,Node
-              </Badge>
+            LinkedIn
+          </IconButton>
             </Stack>
+  </Box>
+  </Center>
+  <Center>
+  <Box textAlign={"center"}  bg={useColorModeValue("white", "gray.900")}
+            boxShadow={"2xl"}>
+    <Avatar
+    size={"xl"}
+    src={
+      "imghere"
+    }
+    alt={"Avatar Alt"}
+    mb={4}
+    pos={"relative"}
+  />
+  <Heading fontSize={"2xl"} fontFamily={"body"}>
+    Cassie
+  </Heading>
 
-            <Stack mt={8} direction={"row"} spacing={4}>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                _focus={{
-                  bg: "gray.200",
-                }}
-              >
-                Github
-              </Button>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                bg={"blue.400"}
-                color={"white"}
-                boxShadow={
-                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                }
-                _hover={{
-                  bg: "blue.500",
-                }}
-                _focus={{
-                  bg: "blue.500",
-                }}
-              >
-                LinkedIn
-              </Button>
-            </Stack>
-          </Box>
-        </Center>
-        <Center py={6}>
-          <Box
-            maxW={"320px"}
-            w={"full"}
-            bg={useColorModeValue("white", "gray.900")}
-            boxShadow={"2xl"}
-            rounded={"lg"}
-            p={6}
-            textAlign={"center"}
+  <Text
+    textAlign={"center"}
+    color={useColorModeValue("gray.700", "gray.400")}
+    px={3}
+  >
+    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+  </Text>
+  <Stack mt={8} justify={"center"} spacing={4}>
+  <IconButton
+            
+            as="a"
+            href="https://github.com/pjsherpa"
+            aria-label="GitHub-for-pj"
+            icon={<FaGithub />}
           >
-            <Avatar
-              size={"xl"}
-              src={
-                "https://media-exp1.licdn.com/dms/image/C4D03AQFwoXR0bgHYWw/profile-displayphoto-shrink_800_800/0/1668041483470?e=1673481600&v=beta&t=fFJWrzplEEIP6R1xjEntZNissdq-2jwu0tLAv0Nmzr8"
-              }
-              alt={"Avatar Alt"}
-              mb={4}
-              pos={"relative"}
-            />
-            <Heading fontSize={"2xl"} fontFamily={"body"}>
-              Phinjock Sherpa(PJ)
-            </Heading>
-
-            <Text
-              textAlign={"center"}
-              color={useColorModeValue("gray.700", "gray.400")}
-              px={3}
-            >
-              Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
-            </Text>
-
-            <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-              <Badge
-                px={2}
-                py={1}
-                bg={useColorModeValue("gray.50", "gray.800")}
-                fontWeight={"400"}
-              >
-                Mongoose,Express,React,Node
-              </Badge>
-            </Stack>
-
-            <Stack mt={8} direction={"row"} spacing={4}>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                _focus={{
-                  bg: "gray.200",
-                }}
-              >
-                Github
-              </Button>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                bg={"blue.400"}
-                color={"white"}
-                boxShadow={
-                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                }
-                _hover={{
-                  bg: "blue.500",
-                }}
-                _focus={{
-                  bg: "blue.500",
-                }}
-              >
-                LinkedIn
-              </Button>
-            </Stack>
-          </Box>
-        </Center>
-        <Center py={6}>
-          <Box
-            maxW={"320px"}
-            w={"full"}
-            bg={useColorModeValue("white", "gray.900")}
-            boxShadow={"2xl"}
-            rounded={"lg"}
-            p={6}
-            textAlign={"center"}
+            Github
+          </IconButton>
+          <IconButton
+           
+           
+            as="a"
+            href="https://www.linkedin.com/in/phinjock-sherpa/"
+            aria-label="GitHub-for-pj"
+            icon={<FaLinkedinIn />}
           >
-            <Avatar
-              size={"xl"}
-              src={
-                "https://media-exp1.licdn.com/dms/image/C4D03AQFwoXR0bgHYWw/profile-displayphoto-shrink_800_800/0/1668041483470?e=1673481600&v=beta&t=fFJWrzplEEIP6R1xjEntZNissdq-2jwu0tLAv0Nmzr8"
-              }
-              alt={"Avatar Alt"}
-              mb={4}
-              pos={"relative"}
-            />
-            <Heading fontSize={"2xl"} fontFamily={"body"}>
-              Phinjock Sherpa(PJ)
-            </Heading>
-
-            <Text
-              textAlign={"center"}
-              color={useColorModeValue("gray.700", "gray.400")}
-              px={3}
-            >
-              Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
-            </Text>
-
-            <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-              <Badge
-                px={2}
-                py={1}
-                bg={useColorModeValue("gray.50", "gray.800")}
-                fontWeight={"400"}
-              >
-                Mongoose,Express,React,Node
-              </Badge>
+            LinkedIn
+          </IconButton>
             </Stack>
+  </Box>
+  </Center>
+  <Center>
+  <Box textAlign={"center"} bg={useColorModeValue("white", "gray.900")}
+            boxShadow={"2xl"}>
+    <Avatar
+    size={"xl"}
+    src={
+      "imghere"
+    }
+    alt={"Avatar Alt"}
+    mb={4}
+    pos={"relative"}
+  />
+  <Heading fontSize={"2xl"} fontFamily={"body"}>
+    Luan
+  </Heading>
 
-            <Stack mt={8} direction={"row"} spacing={4}>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                _focus={{
-                  bg: "gray.200",
-                }}
-              >
-                Github
-              </Button>
-              <Button
-                flex={1}
-                fontSize={"sm"}
-                rounded={"full"}
-                bg={"blue.400"}
-                color={"white"}
-                boxShadow={
-                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                }
-                _hover={{
-                  bg: "blue.500",
-                }}
-                _focus={{
-                  bg: "blue.500",
-                }}
-              >
-                LinkedIn
-              </Button>
+  <Text
+    textAlign={"center"}
+    color={useColorModeValue("gray.700", "gray.400")}
+    px={3}
+  >
+    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+  </Text>
+  <Stack mt={8} justify={"center"} spacing={4}>
+  <IconButton
+            
+            as="a"
+            href="https://github.com/pjsherpa"
+            aria-label="GitHub-for-pj"
+            icon={<FaGithub />}
+          >
+            Github
+          </IconButton>
+          <IconButton
+           
+           
+            as="a"
+            href="https://www.linkedin.com/in/phinjock-sherpa/"
+            aria-label="GitHub-for-pj"
+            icon={<FaLinkedinIn />}
+          >
+            LinkedIn
+          </IconButton>
+              
             </Stack>
-          </Box>
-        </Center>
-      </Stack>
-    </div>
-  );
+  </Box>
+  </Center>
+  <Center>
+  <Box textAlign={"center"} bg={useColorModeValue("white", "gray.900")}
+            boxShadow={"2xl"}>
+    <Avatar
+    size={"xl"}
+    src={
+      "https://media-exp1.licdn.com/dms/image/C4D03AQFwoXR0bgHYWw/profile-displayphoto-shrink_800_800/0/1668041483470?e=1673481600&v=beta&t=fFJWrzplEEIP6R1xjEntZNissdq-2jwu0tLAv0Nmzr8"
+    }
+    alt={"Avatar Alt"}
+    mb={4}
+    pos={"relative"}
+  />
+  <Heading fontSize={"2xl"} fontFamily={"body"}>
+    Phinjock Sherpa(PJ)
+  </Heading>
+
+  <Text
+    textAlign={"center"}
+    color={useColorModeValue("gray.700", "gray.400")}
+    px={3}
+  >
+    Software Enginer, Front End Engineer, Full Stack Web Developer{" "}
+  </Text>
+  <Stack mt={8} justify={"center"} spacing={4}>
+  <IconButton
+            
+            as="a"
+            href="https://github.com/pjsherpa"
+            aria-label="GitHub-for-pj"
+            icon={<FaGithub />}
+          >
+            Github
+          </IconButton>
+          <IconButton
+           
+           
+            as="a"
+            href="https://www.linkedin.com/in/phinjock-sherpa/"
+            aria-label="GitHub-for-pj"
+            icon={<FaLinkedinIn />}
+          >
+            LinkedIn
+          </IconButton>
+            </Stack>
+  </Box>
+  </Center>
+  </Stack>
+  </div>
+  )
 }
+
+export default Barcadians

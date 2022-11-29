@@ -120,11 +120,7 @@ const Signin = (props) => {
           {error && (
             <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
           )}
-          <Stack pt={6}>
-            <Text align={"center"}>
-              Need to sign up? <Link to="/signup" color={"blue.400"}>Sign Up</Link>
-            </Text>
-          </Stack>
+        
           </Box>
         </Stack>
       {/* </Flex> */}
