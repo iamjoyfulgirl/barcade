@@ -53,8 +53,9 @@ const Stats = () => {
           </Thead>
           <Tbody>
             {game.topScores.map((topScore, i) => {
+              console.log('topscore:', topScore)
               return <Tr key={i}>
-                <Td>{topScore.userId}</Td>
+                <Td>{topScore.username}</Td>
                 <Td isNumeric>{topScore.score}</Td>
             </Tr>
               })}
