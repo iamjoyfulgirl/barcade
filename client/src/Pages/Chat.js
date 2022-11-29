@@ -207,7 +207,7 @@ function Chat() {
   ) : (
     <>
       {/* <Center> */}
-      <Flex
+      <Flex className="/Chat" id="Chat"
         textAlign={"center"}
         bg={"#9C4221"}
         borderRadius={"lg"}

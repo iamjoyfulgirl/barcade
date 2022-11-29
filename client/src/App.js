@@ -6,7 +6,7 @@ import Chat from "./Pages/Chat";
 
 
 //div issue occurring from here.
-// import Barcadians from "./Pages/Barcadians";
+import Barcadians from "./Pages/Barcadians";
 import Footer from "./components/Footer/Footer";
 import Lobby from "./Pages/Lobby";
 import Flappybird from "./Pages/Flappybird";
@@ -59,7 +59,7 @@ function App() {
         <br/>
         <Lobby />
         <Arcade />
-        {/* <Barcadians /> */}
+        <Barcadians />
         <Footer />
       </ApolloProvider>
     </div>

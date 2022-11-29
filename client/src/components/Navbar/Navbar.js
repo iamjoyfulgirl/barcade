@@ -18,14 +18,15 @@ import { Link } from "react-scroll";
 import Auth from "../../utils/auth";
 import SignUpForm from '../../Pages/Signup';
 import LoginForm from '../../Pages/Signin';
+import "../../App.css";
 
-//Once Login Signupsetup we use the LinkRoute to render page from singin/Singup to the main page. If not the Scroll Feature and a lot of the Nav items wont appear. Sign out tab is created after signin and signup are set up in utils.
-// import { LinkRoute } from "react-router-dom";
+
 import Header from "../Header/Header";
 
 const Navbar = () => {
 
   const [showModal, setShowModal] = useState(false);
+  const [click, setClick] =useState(false);
 
   const OverlayOne = () => (
     <ModalOverlay
@@ -39,11 +40,13 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [overlay, setOverlay] = React.useState(<OverlayOne />)
 
+ 
+  const closeMenu=()=>setClick(false)
 
 
   return (
-    <div>
-      <Tabs variant="soft-rounded">
+    <div className="headers quoutes">
+      <Tabs variant="line">
         <TabList>
           <Header />
           <Flex
@@ -56,53 +59,72 @@ const Navbar = () => {
             <Tab>
               <Link
                 className="text-light scroll"
-                to="/"
+                to="Home"
                 activeClass="active"
                 spy={true}
                 smooth={true}
                 offset={50}
                 duration={500}
+                onClick={closeMenu}
               >
                 <h1 className="m-0">Home</h1>
               </Link>
             </Tab>
-            <Tab>
+                       <Tab>
               <Link
                 className="text-light scroll"
-                to="gameOn"
+                to="Chat"
                 activeClass="active"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-50}
                 duration={500}
+                onClick={closeMenu}
               >
-                <h1 className="m-0">Game</h1>
+                <h1 className="m-0">Chat</h1>
               </Link>
             </Tab>
             <Tab>
               <Link
                 className="text-light scroll"
-                to="barcadians"
+                to="Lobby"
                 activeClass="active"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-50}
                 duration={500}
+                onClick={closeMenu}
+                
+              >
+                <h1 className="m-0">Lobby</h1>
+              </Link>
+            </Tab>
+            <Tab>
+              <Link
+                className="text-light scroll"
+                to="Arcade"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                onClick={closeMenu}
+              >
+                <h1 className="m-0">Arcade</h1>
+              </Link>
+            </Tab>
+            <Tab>
+              <Link
+                className="text-light scroll"
+                to="Barcadians"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={100}
+                duration={500}
+                onClick={closeMenu}
               >
                 <h1 className="m-0">Barcadians</h1>
-              </Link>
-            </Tab>
-            <Tab>
-              <Link
-                className="text-light scroll"
-                to="barcadians"
-                activeClass="active"
-                spy={true}
-                smooth={true}
-                offset={50}
-                duration={500}
-              >
-                <h1 className="m-0">Chat Area</h1>
               </Link>
             </Tab>
 
@@ -115,7 +137,7 @@ const Navbar = () => {
                 activeClass="active"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-100}
                 duration={500}
                 onClick={Auth.logout}>
                 <h1>Logout</h1>
@@ -128,10 +150,10 @@ const Navbar = () => {
                 activeClass="active"
                 spy={true}
                 smooth={true}
-                offset={50}
+                offset={-100}
                 duration={500}
                 onClick={() => (setOverlay(<OverlayOne />), onOpen())}>
-                <h1>Login/Sign Up</h1>
+                <h1 className="m-0">Login/Sign Up</h1>
               </Link>
             </Tab> )}
           </Flex>
@@ -140,11 +162,11 @@ const Navbar = () => {
       <Modal isCentered isOpen={isOpen} onClose={onClose} size='md'>
           {overlay}
           <ModalContent>
-            <ModalHeader>Cheers!</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
           <Tabs size='md' variant='enclosed'>
             <TabList>
+            <ModalHeader>Cheers!</ModalHeader>
               <Tab>Login</Tab>
               <Tab>Sign Up</Tab>
             </TabList>

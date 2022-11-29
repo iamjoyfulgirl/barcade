@@ -147,11 +147,7 @@ export default function Signup() {
               </Stack>
 
               {/* Note: Need to create a modal or a page that pops up if not signed in or logged in then cannot render through the rest of the page */}
-              <Stack pt={6}>
-                <Text align={"center"}>
-                  Already a user? <Link color={"blue.400"}>Login</Link>
-                </Text>
-              </Stack>
+             
             </form>
           </Stack>
         </Box>
