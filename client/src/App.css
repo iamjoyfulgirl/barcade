@@ -22,9 +22,11 @@
 
 .insideimage > Image .insideimage > .orderup {
   transition: 200ms ease-in-out;
+ 
 }
 .insideimage > .orderup.fade {
   opacity: 0;
+  
 }
 
 .insideimage:hover > .orderup.fade {
@@ -33,7 +35,7 @@
 
 .insideimage:hover > .imgblur {
   filter: blur(5px);
-}
+  }
 
 .insideimage:hover > .imgblur {
   transform: scale(0.9);
@@ -41,6 +43,7 @@
 
 .quoutes {
   font-family: 'Press Start 2P', cursive;
+ 
 }
 
 .navbar {
@@ -76,4 +79,25 @@
   overflow: hidden;
   height: 1000px;
   width:1000px;
+}
+
+.headers {
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: .3s ease-in;
+  overflow: hidden;
+  background: rgba(128, 69, 49,.9);
+  
+}
+
+.m-0:hover{
+  transform: scale(.8);
+}
+
+.coolStuff:hover{
+  transform: scale(.8);
 }

@@ -29,6 +29,7 @@ const Game = () => {
   return (
     <>
       <Stack
+       className="/Lobby" id="Lobby"
         minH={'100vh'}
         direction={{ base: 'column', md: 'row' }}
         justify={'center'}

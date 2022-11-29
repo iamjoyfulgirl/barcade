@@ -40,12 +40,14 @@ mutation AddToChat($chatId: ID!, $userId: ID!) {
 `;
 
 export const ADD_SCORE = gql`
-mutation AddScore($userId: ID!, $gameName: String!, $score: Int!) {
-  addScore(userId: $userId, gameName: $gameName, score: $score) {
+mutation AddScore($userId: ID!, $username: String!, $gameName: String!, $score: Int!) {
+  addScore(userId: $userId, username: $username, gameName: $gameName, score: $score) {
     _id
     gameId
+    gameName
     score
     userId
+    username
   }
 }
 `;

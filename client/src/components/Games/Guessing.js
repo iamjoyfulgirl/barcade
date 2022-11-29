@@ -13,8 +13,12 @@ import {
   Grid,
   Stack,
 } from "@chakra-ui/react";
+import { ADD_SCORE } from "../../utils/mutation";
+import { useMutation, useQuery } from "@apollo/client";
+import Auth from '../../utils/auth';
+import { QUERY_USER } from '../../utils/queries';
 
-const Guessing = () => {
+export default function Guessing() {
   // {Generating random number}
   const secretNumber = Math.trunc(Math.random() * 20) + 1;
   const [number, setNumber] = useState(secretNumber);
@@ -23,7 +27,21 @@ const Guessing = () => {
   const [msg, setMsg] = useState("");
   const [lowHighMsg, setlowHighMsg] = useState("");
   const [score, setScore] = useState(20);
-  const [highScore, sethighScore] = useState();
+  const [topScores, settopScores] = useState();
+
+  const [addScore, { loading, error }] = useMutation(ADD_SCORE);
+
+  let userId;
+
+  if (Auth.loggedIn()) {
+    userId = Auth.getProfile().data._id;
+  } 
+  
+  const { data } = useQuery(QUERY_USER, {
+      variables: { userId: userId },
+    });
+
+  const user = data?.user || {};
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -37,14 +55,14 @@ const Guessing = () => {
     } else if (guess == number) {
       setMsg("💃🏼 You Win");
       setNumber(number);
-      // {HighScore Saved here needs to be pushed up}
-      sethighScore(score);
+      // {topScores Saved here needs to be pushed up}
+      settopScores(score);
       setlowHighMsg("");
 
-      if (score > highScore) {
-        // {displaying score as the new highscore}
+      if (score > topScores) {
+        // {displaying score as the new topScores}
 
-        console.log("high", highScore, "score", score);
+        console.log("high", topScores, "score", score);
       }
     } else if (guess > number) {
       console.log("number", number, "guess", guess);
@@ -87,8 +105,21 @@ const Guessing = () => {
     setMsg("");
     setScore(score);
     setRandomNumber(setNumber);
-    sethighScore(score);
+    settopScores(score);
   };
+
+  const saveScore = async () => {
+    try{ 
+     await addScore({
+    variables: {
+      userId: user?._id,
+      username: user?.username,
+      gameName: "Guessing Game",
+      score: score,
+    }})
+    } catch (e) {
+      console.error(e);
+    }};
 
   return (
     <Box textAlign="center" fontSize="xl">
@@ -144,6 +175,13 @@ const Guessing = () => {
                   <Button type="submit" className="btn check">
                     Check!
                   </Button>
+
+                  <Button
+                    onClick={saveScore}
+                    className="btn check"
+                  >
+                    Save score!
+                  </Button>
                 </Box>
               </form>
               <Box className="right" w={"52rem"} fontSize={"2rem"}>
@@ -154,8 +192,8 @@ const Guessing = () => {
                 <Text mb={"2rem"}>
                   💯 Score: <span className="score">{score}</span>
                 </Text>
-                <Text className="label-highscore">
-                  🥇 Highscore: <span className="highscore">{highScore}</span>
+                <Text className="label-topScores">
+                  🥇 topScores: <span className="topScores">{topScores}</span>
                 </Text>
               </Box>
             </Flex>
@@ -166,4 +204,4 @@ const Guessing = () => {
   );
 };
 
-export default Guessing;
+// export default Guessing;

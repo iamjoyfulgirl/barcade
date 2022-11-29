@@ -6,6 +6,10 @@ const scoreSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User', 
         },
+        username: {
+            type: String,
+            required: true,
+        },
         score: {
             type: Number,
             required: true,
@@ -13,6 +17,10 @@ const scoreSchema = new Schema(
         gameId: {
             type: Schema.Types.ObjectId,
             ref: 'Game',
+        },
+        gameName: {
+            type: String,
+            required: true,
         },
     },
     {

@@ -136,6 +136,7 @@ query Games {
     topScores {
       score
       userId
+      username
     }
   }
 }
@@ -157,6 +158,7 @@ query Game($gameId: ID!) {
       gameId
       score
       userId
+      username
     }
   }
 }
@@ -169,6 +171,8 @@ query Scores {
     gameId
     score
     userId
+    gameName
+    username
   }
 }
 `;

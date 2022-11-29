@@ -106,7 +106,7 @@ const resolvers = {
           { new: true },
         );
         await Game.findOneAndUpdate(
-          { _id: args.gameId},
+          { gameName: args.gameName},
           { $push: { scores: args } },
           { new: true },
         );
