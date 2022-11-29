@@ -35,7 +35,7 @@ const Barcadians = () => {
     pos={"relative"}
   />
   <Heading fontSize={"2xl"} fontFamily={"body"}>
-    Sherri
+    Sherri Knight
   </Heading>
 
   <Text
@@ -49,8 +49,8 @@ const Barcadians = () => {
               <IconButton
             
                 as="a"
-                href="https://github.com/pjsherpa"
-                aria-label="GitHub-for-pj"
+                href="https://github.com/iamjoyfulgirl"
+                aria-label="GitHub-for-Sherri"
                 icon={<FaGithub />}
               >
                 Github
@@ -59,8 +59,8 @@ const Barcadians = () => {
                
                
                 as="a"
-                href="https://www.linkedin.com/in/phinjock-sherpa/"
-                aria-label="GitHub-for-pj"
+                href="https://www.linkedin.com/in/sherri-knight-95bb898/"
+                aria-label="LinkedIn-for-Sherri"
                 icon={<FaLinkedinIn />}
               >
                 LinkedIn
@@ -81,7 +81,7 @@ const Barcadians = () => {
     pos={"relative"}
   />
   <Heading fontSize={"2xl"} fontFamily={"body"}>
-    Mike
+  Michael Rugh
   </Heading>
 
   <Text
@@ -95,8 +95,8 @@ const Barcadians = () => {
   <IconButton
             
             as="a"
-            href="https://github.com/pjsherpa"
-            aria-label="GitHub-for-pj"
+            href="https://github.com/DA-Mike"
+            aria-label="GitHub-for-Mike"
             icon={<FaGithub />}
           >
             Github
@@ -105,8 +105,8 @@ const Barcadians = () => {
            
            
             as="a"
-            href="https://www.linkedin.com/in/phinjock-sherpa/"
-            aria-label="GitHub-for-pj"
+            href="https://www.linkedin.com/in/michaelrugh/"
+            aria-label="LinkedIn-for-Mike"
             icon={<FaLinkedinIn />}
           >
             LinkedIn
@@ -127,7 +127,7 @@ const Barcadians = () => {
     pos={"relative"}
   />
   <Heading fontSize={"2xl"} fontFamily={"body"}>
-    Cassie
+    Cassie Kisse
   </Heading>
 
   <Text
@@ -141,8 +141,8 @@ const Barcadians = () => {
   <IconButton
             
             as="a"
-            href="https://github.com/pjsherpa"
-            aria-label="GitHub-for-pj"
+            href="https://github.com/cassandrakise"
+            aria-label="GitHub-for-Cassie"
             icon={<FaGithub />}
           >
             Github
@@ -151,8 +151,8 @@ const Barcadians = () => {
            
            
             as="a"
-            href="https://www.linkedin.com/in/phinjock-sherpa/"
-            aria-label="GitHub-for-pj"
+            href="https://www.linkedin.com/in/cassandrakise/"
+            aria-label="LinkedIn-for-Cassie"
             icon={<FaLinkedinIn />}
           >
             LinkedIn
@@ -173,7 +173,7 @@ const Barcadians = () => {
     pos={"relative"}
   />
   <Heading fontSize={"2xl"} fontFamily={"body"}>
-    Luan
+    Luan Pham
   </Heading>
 
   <Text
@@ -187,7 +187,7 @@ const Barcadians = () => {
   <IconButton
             
             as="a"
-            href="https://github.com/pjsherpa"
+            href="https://github.com/Luan-Pham"
             aria-label="GitHub-for-pj"
             icon={<FaGithub />}
           >
@@ -197,7 +197,7 @@ const Barcadians = () => {
            
            
             as="a"
-            href="https://www.linkedin.com/in/phinjock-sherpa/"
+            href="https://www.linkedin.com/in/luan-pham3/"
             aria-label="GitHub-for-pj"
             icon={<FaLinkedinIn />}
           >
