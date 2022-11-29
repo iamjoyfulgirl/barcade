@@ -15,8 +15,10 @@ const typeDefs = gql `
     type Score {
         _id: ID!
         userId: ID!
+        username: String!        
         score: Int!
         gameId: ID
+        gameName: String!
     }
 
     type Message {
@@ -68,7 +70,7 @@ const typeDefs = gql `
         addChat(chatName: String!, isGroupChat: Boolean!, groupAdmin: ID): Chat
         addToChat(chatId: ID!, userId: ID!): Chat
         addMessage(sender: ID!, chat: ID!, content: String!): Message
-        addScore(userId: ID!, gameId: ID!, score: Int!): Score
+        addScore(userId: ID!, username: String! gameName: String!, score: Int!): Score
         addGame(gameName: String!): Game
         addDrink(userId: ID!, drink: String!): User
     }
