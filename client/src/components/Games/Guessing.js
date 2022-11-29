@@ -113,7 +113,8 @@ export default function Guessing() {
      await addScore({
     variables: {
       userId: user?._id,
-      gameId: "637afa025d0edd0c50cfae11",
+      username: user?.username,
+      gameName: "Guessing Game",
       score: score,
     }})
     } catch (e) {
