@@ -13,7 +13,15 @@ import { Tabs,
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure } from "@chakra-ui/react";
+  useDisclosure,
+  MenuList,
+  MenuItem,
+  Menu,
+  MenuButton, 
+  IconButton,
+  Show,
+  Hide } from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { Link } from "react-scroll";
 import Auth from "../../utils/auth";
 import SignUpForm from '../../Pages/Signup';
@@ -39,16 +47,18 @@ const Navbar = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [overlay, setOverlay] = React.useState(<OverlayOne />)
-
+  const [display, changeDisplay] = useState('none')
  
   const closeMenu=()=>setClick(false)
-
+  const breakpoints = { lg: '62em'};
 
   return (
-    <div className="headers quoutes">
+    <>
+    <div className="headers quoutes" >
       <Tabs variant="line">
         <TabList>
           <Header />
+          <Hide below='lg'>
           <Flex
             align="center"
             pos="relative"
@@ -157,8 +167,120 @@ const Navbar = () => {
               </Link>
             </Tab> )}
           </Flex>
+          </Hide>
+          {/* mobile menu */}
+          <Show below='lg'>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label='Options'
+              icon={<HamburgerIcon />}
+              variant='outline'
+            />
+            <MenuList>
+              <MenuItem >
+                <Link
+                className="text-light scroll"
+                to="Home"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={50}
+                duration={500}
+                onClick={closeMenu}
+              >
+                <h1 className="m-0">Home</h1>
+              </Link>
+              </MenuItem>
+              <MenuItem >
+                <Link
+                className="text-light scroll"
+                to="Chat"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-50}
+                duration={500}
+                onClick={closeMenu}
+              >
+                <h1 className="m-0">Chat</h1>
+              </Link>
+              </MenuItem>
+              <MenuItem >
+                <Link
+                className="text-light scroll"
+                to="Lobby"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-50}
+                duration={500}
+                onClick={closeMenu}
+              >
+                <h1 className="m-0">Lobby</h1>
+              </Link>
+              </MenuItem>
+              <MenuItem >
+                <Link
+                className="text-light scroll"
+                to="Arcade"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                onClick={closeMenu}
+              >
+                <h1 className="m-0">Arcade</h1>
+              </Link>
+              </MenuItem>
+              <MenuItem >
+                <Link
+                className="text-light scroll"
+                to="Barcadians"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={100}
+                duration={500}
+                onClick={closeMenu}
+              >
+                <h1 className="m-0">Barcadians</h1>
+              </Link>
+              </MenuItem>
+              {Auth.loggedIn() ? (
+            <MenuItem>
+              <Link
+                className="text-light scroll"
+                to="barcadians"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                onClick={Auth.logout}>
+                <h1>Logout</h1>
+              </Link>
+            </MenuItem> ) : (
+            <MenuItem>
+              <Link
+                className="text-light scroll"
+                to="barcadians"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                onClick={() => (setOverlay(<OverlayOne />), onOpen())}>
+                <h1 className="m-0">Login/Sign Up</h1>
+              </Link>
+            </MenuItem> )}
+            </MenuList>
+          </Menu>
+          </Show>
         </TabList>
       </Tabs>
+      </div>
       <Modal isCentered isOpen={isOpen} onClose={onClose} size='md'>
           {overlay}
           <ModalContent>
@@ -185,7 +307,7 @@ const Navbar = () => {
         </ModalFooter>
         </ModalContent>
       </Modal>
-    </div>
+    </>
   );
 };
 
