@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { Text, Button } from '@chakra-ui/react';
-import styled from 'styled-components';
-import { ADD_SCORE } from '../../utils/mutation';
-import { useMutation, useQuery } from '@apollo/client';
-import Auth from '../../utils/auth';
-import { QUERY_USER } from '../../utils/queries';
+import { useEffect, useState } from "react";
+import { Text, Button } from "@chakra-ui/react";
+import styled from "styled-components";
+import { ADD_SCORE } from "../../utils/mutation";
+import { useMutation, useQuery } from "@apollo/client";
+import Auth from "../../utils/auth";
+import { QUERY_USER } from "../../utils/queries";
 
 const birdSize = 100;
 const gameHeight = 1000;
@@ -55,7 +55,7 @@ function App() {
         variables: {
           userId: user?._id,
           username: user?.username,
-          gameName: 'Flappy Bird',
+          gameName: "Flappy Bird",
           score: topScores,
         },
       });
@@ -68,7 +68,7 @@ function App() {
     let pipeID;
     if (gameStart && pipeLeft >= -pipeWidth) {
       pipeID = setInterval(() => {
-        setPipeleft((pipeLeft) => pipeLeft - 20);
+        setPipeleft((pipeLeft) => pipeLeft - 10);
       }, 30);
       return () => {
         clearInterval(pipeID);
@@ -103,35 +103,35 @@ function App() {
 
   return (
     <Div>
-      <Button onClick={saveScore} className='btn check'>
+      <Button onClick={saveScore} className="btn check">
         Save score!
       </Button>
       <Div onClick={jumpHandle}>
         <BirdContainer
-          className='gameBox'
+          className="gameBox"
           height={gameHeight}
           width={gameWidth}
         >
-          <Text fontSize={100} position='relative' objectPosition='center'>
+          <Text fontSize={100} position="relative" objectPosition="center">
             {score}
           </Text>
           <PipeContainer>
             <Pipe
-              className='thePipes'
+              className="thePipes"
               top={0}
               width={pipeWidth}
               height={pipeHeight}
               left={pipeLeft}
             />
             <Pipe
-              className='thePipes'
+              className="thePipes"
               top={pipeHole}
               width={pipeWidth}
               height={bottomPipe}
               left={pipeLeft}
             />
           </PipeContainer>
-          <Bird className='theBird' size={birdSize} top={birdTop} />
+          <Bird className="theBird" size={birdSize} top={birdTop} />
         </BirdContainer>
       </Div>
     </Div>

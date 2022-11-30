@@ -127,7 +127,7 @@ const Arcade = () => {
     default:
       return (
         <Stack
-          background={"orange"}
+          background={"rgba(128, 69, 49,.9)"}
           className="/Arcade"
           id="Arcade"
           textAlign={"center"}

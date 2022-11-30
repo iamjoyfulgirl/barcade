@@ -27,12 +27,13 @@ const Lobby = () => {
         minH={"100vh"}
         direction={{ base: "column", md: "row" }}
         justify={"center"}
+        justifyContent="space-evenly"
       >
         <div className="gameOn" id="gameOn">
           <Stats />
         </div>
 
-        <Box>
+        <Box className="border">
           <Avatar
             size={"xxl"}
             src={
