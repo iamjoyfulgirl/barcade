@@ -38,7 +38,7 @@ Our users are people who are waiting for their friends or want some source of en
 ## Links
 
 - Deployed application: https://secure-everglades-09731.herokuapp.com
-- Deployed chat application: https://github.com/cassandrakise/chat-for-barcade-app
+- Chat app Github Repository: https://github.com/cassandrakise/chat-for-barcade-app
 - Github Repository: https://github.com/iamjoyfulgirl/barcade
 
 ## Screenshots
