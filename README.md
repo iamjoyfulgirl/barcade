@@ -35,6 +35,11 @@ Our users are people who are waiting for their friends or want some source of en
 - React
 - JavaScript
 
+## Links
+
+- Deployed application:https://secure-everglades-09731.herokuapp.com
+- Github Repository:https://github.com/iamjoyfulgirl/barcade
+
 ## Screenshots
 
 ### Home
