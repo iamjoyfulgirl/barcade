@@ -71,11 +71,11 @@ export default function Guessing() {
       if (score === 0) {
         setScore(0);
         setlowHighMsg("");
-        setMsg("You loose");
+        setMsg("You lose");
       }
     }
     // else if (score === 0) {
-    //   setMsg("You loose");
+    //   setMsg("You lose");
     //   setlowHighMsg("");
     // }
     if (guess < number) {
@@ -84,7 +84,7 @@ export default function Guessing() {
       if (score === 0) {
         setScore(0);
         setlowHighMsg("");
-        setMsg("You loose");
+        setMsg("You lose");
       }
     }
   };
