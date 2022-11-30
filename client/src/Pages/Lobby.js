@@ -1,6 +1,6 @@
 import { Stack, Avatar, Box, Heading, Text } from "@chakra-ui/react";
 import Stats from "../components/Stats/Stats";
-import BarDrinks from "../components/BarChoices/BarDrinks";
+
 import Auth from "../utils/auth";
 import { QUERY_USER } from "../utils/queries";
 
@@ -55,7 +55,6 @@ const Lobby = () => {
             </Text>
           )}
         </Box>
-        <BarDrinks />
       </Stack>
     </>
   );

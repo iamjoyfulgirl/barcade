@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useSocket from "use-socket.io-client";
 import { useImmer } from "use-immer";
+import BarDrinks from "../components/BarChoices/BarDrinks";
 // the useImmer hook manages state of arrays and objects w/o mutating the original state -- combine useState and Immer to give immutable state management -- this is helpful for managing lists of ppl who are online and messages that need to be displayed
 import {
   Box,
@@ -40,7 +41,9 @@ const Online = (props) =>
   props.data.map((m) => (
     <List>
       <ListItem>
-        <li display={"flex"} id={m[0]}>{m[1]}</li>
+        <li display={"flex"} id={m[0]}>
+          {m[1]}
+        </li>
       </ListItem>
     </List>
   ));
@@ -134,6 +137,7 @@ function Chat() {
   return id ? (
     <>
       <Center>
+        <BarDrinks />
         <HStack spacing="24px">
           <Box
             bg="brown"
@@ -205,71 +209,72 @@ function Chat() {
     </>
   ) : (
     <>
-      {/* <Center> */}
-      <Flex
-        className="/Chat"
-        id="Chat"
-        textAlign={"center"}
-        bg={"#9C4221"}
-        borderRadius={"lg"}
-        borderWidth={"1px"}
-        boxShadow={"xl"}
-        h="lg"
-        margin="auto"
-        w="lg"
-        flex={1}
-        align={"center"}
-        justify={"center"}
-      >
-        <VStack>
-          <Center>
-            <FormControl>
-              <div style={{ textAlign: "center", margin: "auto" }}>
-                <form
-                  onSubmit={(event) => handleSubmit(event)}
-                  padding="5"
-                  margin="5"
-                >
-                  <FormLabel
-                    textColor={"white"}
-                    textStyle={"strong"}
-                    fontSize={"2xl"}
-                    textAlign={"center"}
+      <Center>
+        <BarDrinks />
+        <Flex
+          className="/Chat"
+          id="Chat"
+          textAlign={"center"}
+          bg={"#9C4221"}
+          borderRadius={"lg"}
+          borderWidth={"1px"}
+          boxShadow={"xl"}
+          h="lg"
+          margin="auto"
+          w="lg"
+          flex={1}
+          align={"center"}
+          justify={"center"}
+        >
+          <VStack>
+            <Center>
+              <FormControl>
+                <div style={{ textAlign: "center", margin: "auto" }}>
+                  <form
+                    onSubmit={(event) => handleSubmit(event)}
+                    padding="5"
+                    margin="5"
                   >
-                    {" "}
-                    Barcade Chat{" "}
-                  </FormLabel>
-                  <Center w={"md"}>
-                    <Input
-                      bg="white"
-                      id="name"
-                      onChange={(e) => setUserName(e.target.value.trim())}
-                      required
-                      placeholder="What's your name?"
-                      w="md"
-                    />
-                  </Center>
-                  <Center>
-                    <Input
-                      mt={"3"}
-                      bg="white"
-                      id="room"
-                      onChange={(e) => setRoom(e.target.value.trim())}
-                      placeholder="What bar are you meeting folks at?"
-                      w="md"
-                    />
-                  </Center>
-                  <br />
-                  <Button colorScheme={"green"} type="submit">
-                    Sit Down at the Bar 🥃
-                  </Button>
-                </form>
-              </div>
-            </FormControl>
-          </Center>
-        </VStack>
-      </Flex>
-      {/* </Center> */}
+                    <FormLabel
+                      textColor={"white"}
+                      textStyle={"strong"}
+                      fontSize={"2xl"}
+                      textAlign={"center"}
+                    >
+                      {" "}
+                      Barcade Chat{" "}
+                    </FormLabel>
+                    <Center w={"md"}>
+                      <Input
+                        bg="white"
+                        id="name"
+                        onChange={(e) => setUserName(e.target.value.trim())}
+                        required
+                        placeholder="What's your name?"
+                        w="md"
+                      />
+                    </Center>
+                    <Center>
+                      <Input
+                        mt={"3"}
+                        bg="white"
+                        id="room"
+                        onChange={(e) => setRoom(e.target.value.trim())}
+                        placeholder="What bar are you meeting folks at?"
+                        w="md"
+                      />
+                    </Center>
+                    <br />
+                    <Button colorScheme={"green"} type="submit">
+                      Sit Down at the Bar 🥃
+                    </Button>
+                  </form>
+                </div>
+              </FormControl>
+            </Center>
+          </VStack>
+        </Flex>
+      </Center>
     </>
   );
 }
