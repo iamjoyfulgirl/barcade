@@ -40,7 +40,7 @@ const Online = (props) =>
   props.data.map((m) => (
     <List>
       <ListItem>
-        <li id={m[0]}>{m[1]}</li>
+        <li display={"flex"} id={m[0]}>{m[1]}</li>
       </ListItem>
     </List>
   ));
