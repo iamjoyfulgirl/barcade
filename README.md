@@ -4,7 +4,7 @@
 
 ## The Team
 
-- Cassandra Kise
+- Cassie Kise
 - Luan Pham
 - Mike Rugh
 - Pj Sherpa
@@ -67,4 +67,4 @@ Our users are people who are waiting for their friends or want some source of en
 
 ---
 
-## BARCADE 🍻 - Copyright 2022 Cassandra Kise, Luan Pham, Mike Rugh, Pj Sherpa, Sherri Knight
+## BARCADE 🍻 - Copyright 2022 Cassie Kise, Luan Pham, Mike Rugh, Pj Sherpa, Sherri Knight
